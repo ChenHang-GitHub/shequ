@@ -1,0 +1,106 @@
+2019-08-17 00:00:21.412 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:00:51.420 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:01:21.422 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:01:51.424 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:02:21.428 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:02:51.431 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:03:21.433 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:03:51.436 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:04:21.439 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:04:51.441 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:05:21.443 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:05:51.444 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:06:21.448 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:06:51.450 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:07:21.454 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:07:51.457 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:08:21.459 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:08:51.463 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:09:21.466 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:09:51.467 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:10:21.471 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:10:51.473 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:11:21.494 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:11:51.495 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:12:21.496 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:12:51.499 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:13:21.500 DEBUG 16960 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=10, active=0, idle=10, waiting=0)
+2019-08-17 00:13:28.105  INFO 18076 --- [main] com.csh.community.CommunityApplication   : Starting CommunityApplication on LAPTOP-2NJKKAU7 with PID 18076 (C:\Users\chenshihang\IdeaProjects\community\target\classes started by chenshihang in C:\Users\chenshihang\IdeaProjects\community)
+2019-08-17 00:13:28.107 DEBUG 18076 --- [main] com.csh.community.CommunityApplication   : Running with Spring Boot v2.1.7.RELEASE, Spring v5.1.9.RELEASE
+2019-08-17 00:13:28.108  INFO 18076 --- [main] com.csh.community.CommunityApplication   : No active profile set, falling back to default profiles: default
+2019-08-17 00:13:29.850  INFO 18076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-08-17 00:13:29.918  INFO 18076 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-08-17 00:13:29.919  INFO 18076 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.22]
+2019-08-17 00:13:30.356  INFO 18076 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-08-17 00:13:30.357  INFO 18076 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2200 ms
+2019-08-17 00:13:30.521 DEBUG 18076 --- [main] com.zaxxer.hikari.HikariConfig           : Driver class oracle.jdbc.OracleDriver found in Thread context class loader sun.misc.Launcher$AppClassLoader@18b4aac2
+2019-08-17 00:13:31.117  INFO 18076 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-17 00:13:31.268  INFO 18076 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-08-17 00:13:31.505  INFO 18076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-17 00:13:31.509  INFO 18076 --- [main] com.csh.community.CommunityApplication   : Started CommunityApplication in 3.991 seconds (JVM running for 5.566)
+2019-08-17 00:13:36.945  INFO 18076 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-17 00:13:36.947  INFO 18076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-08-17 00:13:36.956  INFO 18076 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 9 ms
+2019-08-17 00:13:36.999 TRACE 18076 --- [http-nio-8080-exec-1] c.c.community.controller.testController  : 首页
+2019-08-17 00:13:41.809  INFO 18076 --- [http-nio-8080-exec-3] com.csh.community.provider.GitHubPro     : 4bfbba8d2be23f0f096f54cbc860c11947686d5d...
+2019-08-17 00:13:42.673  INFO 18076 --- [http-nio-8080-exec-3] c.c.community.controller.testController  : Chen-Hangnull52555192
+2019-08-17 00:13:42.674  INFO 18076 --- [http-nio-8080-exec-3] c.c.community.controller.testController  : 登入后返回index
+2019-08-17 00:13:42.681  INFO 18076 --- [http-nio-8080-exec-3] c.c.community.controller.testController  : GitHubUser{name='Chen-Hang', id=52555192, bio='null'}???
+2019-08-17 00:13:42.699 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - configuration:
+2019-08-17 00:13:42.701 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : allowPoolSuspension.............false
+2019-08-17 00:13:42.701 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : autoCommit......................true
+2019-08-17 00:13:42.702 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : catalog.........................none
+2019-08-17 00:13:42.702 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : connectionInitSql...............none
+2019-08-17 00:13:42.702 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : connectionTestQuery.............none
+2019-08-17 00:13:42.703 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : connectionTimeout...............30000
+2019-08-17 00:13:42.703 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : dataSource......................none
+2019-08-17 00:13:42.703 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : dataSourceClassName.............none
+2019-08-17 00:13:42.703 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : dataSourceJNDI..................none
+2019-08-17 00:13:42.703 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : dataSourceProperties............{password=<masked>}
+2019-08-17 00:13:42.704 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : driverClassName................."oracle.jdbc.OracleDriver"
+2019-08-17 00:13:42.704 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : healthCheckProperties...........{}
+2019-08-17 00:13:42.704 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : healthCheckRegistry.............none
+2019-08-17 00:13:42.704 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : idleTimeout.....................600000
+2019-08-17 00:13:42.704 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : initializationFailTimeout.......1
+2019-08-17 00:13:42.705 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : isolateInternalQueries..........false
+2019-08-17 00:13:42.705 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : jdbcUrl.........................jdbc:oracle:thin:@localhost:1521:orcl
+2019-08-17 00:13:42.705 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : leakDetectionThreshold..........0
+2019-08-17 00:13:42.705 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : maxLifetime.....................1800000
+2019-08-17 00:13:42.705 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : maximumPoolSize.................10
+2019-08-17 00:13:42.705 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : metricRegistry..................none
+2019-08-17 00:13:42.705 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : metricsTrackerFactory...........none
+2019-08-17 00:13:42.705 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : minimumIdle.....................10
+2019-08-17 00:13:42.705 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : password........................<masked>
+2019-08-17 00:13:42.706 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : poolName........................"HikariPool-1"
+2019-08-17 00:13:42.706 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : readOnly........................false
+2019-08-17 00:13:42.707 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : registerMbeans..................false
+2019-08-17 00:13:42.707 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : scheduledExecutor...............none
+2019-08-17 00:13:42.707 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : schema..........................none
+2019-08-17 00:13:42.707 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : threadFactory...................internal
+2019-08-17 00:13:42.707 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : transactionIsolation............default
+2019-08-17 00:13:42.707 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : username........................"lp"
+2019-08-17 00:13:42.707 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariConfig           : validationTimeout...............5000
+2019-08-17 00:13:42.707  INFO 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-08-17 00:13:42.850  INFO 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.pool.PoolBase          : HikariPool-1 - Driver does not support get/set network timeout for connections. (oracle.jdbc.driver.T4CConnection.getNetworkTimeout()I)
+2019-08-17 00:13:42.871 DEBUG 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@58ed95f9
+2019-08-17 00:13:42.873  INFO 18076 --- [http-nio-8080-exec-3] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-08-17 00:13:42.882 DEBUG 18076 --- [http-nio-8080-exec-3] c.c.c.d.U.insertGitHubUser!selectKey     : ==>  Preparing: select uset_sql.nextval as id from dual 
+2019-08-17 00:13:42.973 DEBUG 18076 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Pool stats (total=1, active=1, idle=0, waiting=0)
+2019-08-17 00:13:42.985 DEBUG 18076 --- [http-nio-8080-exec-3] c.c.c.d.U.insertGitHubUser!selectKey     : ==> Parameters: 
+2019-08-17 00:13:43.012 DEBUG 18076 --- [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@321d77eb
+2019-08-17 00:13:43.018 TRACE 18076 --- [http-nio-8080-exec-3] c.c.c.d.U.insertGitHubUser!selectKey     : <==    Columns: ID
+2019-08-17 00:13:43.022 TRACE 18076 --- [http-nio-8080-exec-3] c.c.c.d.U.insertGitHubUser!selectKey     : <==        Row: 8
+2019-08-17 00:13:43.024 DEBUG 18076 --- [http-nio-8080-exec-3] c.c.c.d.U.insertGitHubUser!selectKey     : <==      Total: 1
+2019-08-17 00:13:43.025 DEBUG 18076 --- [http-nio-8080-exec-3] c.c.c.dao.UserMapper.insertGitHubUser    : ==>  Preparing: INSERT INTO GitHubUser(id,account_Id,name,token) VALUES (?,?,?,?) 
+2019-08-17 00:13:43.029 DEBUG 18076 --- [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@3cda9fd8
+2019-08-17 00:13:43.032 DEBUG 18076 --- [http-nio-8080-exec-3] c.c.c.dao.UserMapper.insertGitHubUser    : ==> Parameters: 8(Integer), 52555192(String), Chen-Hang(String), 6fb1d61f-f92b-4409-86de-ba1eeef8ff16(String)
+2019-08-17 00:13:43.039 DEBUG 18076 --- [http-nio-8080-exec-3] c.c.c.dao.UserMapper.insertGitHubUser    : <==    Updates: 1
+2019-08-17 00:13:43.055 TRACE 18076 --- [http-nio-8080-exec-4] c.c.community.controller.testController  : 首页
+2019-08-17 00:13:43.064 DEBUG 18076 --- [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@38e51c9b
+2019-08-17 00:13:43.083 DEBUG 18076 --- [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@7de795e3
+2019-08-17 00:13:43.138 DEBUG 18076 --- [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@241c179b
+2019-08-17 00:13:43.176 DEBUG 18076 --- [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@4cd0689f
+2019-08-17 00:13:43.194 DEBUG 18076 --- [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@5cc1b45a
+2019-08-17 00:13:43.213 DEBUG 18076 --- [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@1dc86aac
+2019-08-17 00:13:43.227 DEBUG 18076 --- [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection oracle.jdbc.driver.T4CConnection@59ac1641
+2019-08-17 00:13:43.227 DEBUG 18076 --- [HikariPool-1 connection adder] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - After adding stats (total=10, active=0, idle=10, waiting=0)
