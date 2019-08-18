@@ -40,7 +40,7 @@ public class GitHubPro {
 
 
 
-    public GitHubUser getUser (String accessToken) throws  Exception
+    public GitHubUser getGitHubUser (String accessToken) throws  Exception
     {
         OkHttpClient client = new OkHttpClient();
 

@@ -4,19 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.csh.community.dao.UserMapper">
     <!--    public Employee getEmpById(Integer id);
-
      public void insertEmp(Employee employee);-->
-    <select id="getEmpById" resultType="com.csh.community.pojo.Employee">
-        SELECT * FROM employee WHERE id=#{id}
-    </select>
 
     <insert id="insertGitHubUser" useGeneratedKeys="true" keyProperty="id">
 
     <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
         select uset_sql.nextval  as id from  dual
          </selectKey>
-        INSERT INTO GitHubUser(id,account_Id,name,token) VALUES (#{id},#{account_Id},#{name},#{token})
+        INSERT INTO GitHubUser(id,account_Id,name,token,avatar_url) VALUES (#{id},#{account_Id},#{name},#{token},#{avatar_url})
     </insert>
+    <select id="findByToken" resultType="com.csh.community.pojo.User">
+        SELECT * FROM GitHubUser WHERE token=#{token}
+    </select>
 
 
 </mapper>

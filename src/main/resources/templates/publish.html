@@ -9,9 +9,11 @@
     <script src="js/bootstrap.js"></script>
 
     <link rel="icon" type="image/x-icon" href="../static/image/favicon.ico">
+    <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
 
-   </head>
-<body>
+
+</head>
+<body style="background-color: #efefed">
 
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -72,25 +74,40 @@
     </div>
 </nav>
 
-
-
 <!--流式布局-->
 <div class="container-fluid main">
     <div class="row">
         <!--9-->
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <h2> <div class="glyphicon glyphicon-plus"></div> 发现</h2>
-         <hr/>
-            <img src="../static/image/githuthead.jpg" alt="头像" class="img-rounded" width="90px" height="90px">
+            <h2> <div class="glyphicon glyphicon-plus"></div> 发起</h2>
+            <hr>
+            <form action="/publish" method="post">
+                <div class="form-group">
+                    <label for="title">*问题标题</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Email" required="true" th:value="${title!=null}?${title}">
+                </div>
+                <div class="form-group">
+                    <label for="title">*问题补充</label>
+                    <textarea  class="form-control" name="desc" id="desc" cols="30" rows="20" required="true"  th:text="${desc!=null}?${desc}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="title">*问题标签</label>
+                    <input type="text" class="form-control" id="tag" name="tag" placeholder="Email" required="true"  th:value="${tag!=null}?${tag}">
+                </div>
+
+               <div th:if="${error!=null}">
+                   <div class="alert alert-danger" th:text="${error}"></div>
+               </div>
+                <button type="submit" class="btn btn-success btn-publish">发布</button>
+            </form>
         </div>
-
-
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-
-
+           <h2> * 问题发布指南</h2>
         </div>
     </div>
 </div>
+
+
 
 </body>
 </html>

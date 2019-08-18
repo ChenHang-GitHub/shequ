@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csh.community.dao.PublishMapper">
+
+    <insert id="createMapper" useGeneratedKeys="true" keyProperty="id">
+
+        <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
+            select quest_SEQ.nextval  as id from  dual
+        </selectKey>
+        INSERT INTO question(id,title,description,creator,tag,gmt_create,gmt_modified) VALUES (#{id},#{title},#{description},#{creator},#{tag},#{gmt_create},#{gmt_modified})
+    </insert>
+
+
+</mapper>

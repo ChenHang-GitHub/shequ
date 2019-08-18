@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Controller
@@ -39,7 +41,8 @@ public class OAuthController {
     @GetMapping(value = "callback")
     public String callBack(@RequestParam(name="code") String code,
                            @RequestParam(name = "state")String state,
-                           HttpServletRequest request) throws Exception {
+                           HttpServletRequest request,
+                           HttpServletResponse response) throws Exception {
 
         AccessTokenDTO accessTokenDTO = new AccessTokenDTO();
         accessTokenDTO.setCode(code);
@@ -47,21 +50,26 @@ public class OAuthController {
         accessTokenDTO.setState(state);
         accessTokenDTO.setClient_id(cid);
         accessTokenDTO.setClient_secret(csecert);
+
         String accessToken = gitHubPro.getAccessToken(accessTokenDTO);
-        GitHubUser user = gitHubPro.getUser(accessToken);
-        logger.info(user.getName()+user.getBio()+user.getId());
+        GitHubUser user = gitHubPro.getGitHubUser(accessToken);
+        logger.info(user.getName()+user.getBio()+user.getId()+user.getAvatar_url()+"????????");
         logger.info("登入后返回index");
         if(user!=null)
         {
-            request.getSession().setAttribute("user",user);
+//            request.getSession().setAttribute("user",user);
             logger.info(user.toString()+"???");
             User u= new User();
             //通过序列自增
             u.setId(1);
             u.setName(user.getName());
             u.setAccount_Id(user.getId().toString());
-            u.setToken(UUID.randomUUID().toString());
+            u.setAvatar_url(user.getAvatar_url());
+            //自己创建token
+            String token  = UUID.randomUUID().toString();
+            u.setToken(token);
             userMapper.insertGitHubUser(u);
+            response.addCookie(new Cookie("token",token));
             return  "redirect:/";
         }else
         {
