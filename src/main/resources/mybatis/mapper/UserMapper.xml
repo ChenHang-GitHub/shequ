@@ -11,11 +11,29 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
         select uset_sql.nextval  as id from  dual
          </selectKey>
-        INSERT INTO GitHubUser(id,account_Id,name,token,avatar_url) VALUES (#{id},#{account_Id},#{name},#{token},#{avatar_url})
+        INSERT INTO GitHubUser(id,accountId,name,token,avatarUrl) VALUES (#{id},#{accountId},#{name},#{token},#{avatarUrl})
     </insert>
     <select id="findByToken" resultType="com.csh.community.pojo.User">
         SELECT * FROM GitHubUser WHERE token=#{token}
     </select>
+    <select id="findById" resultType="com.csh.community.pojo.User">
+        SELECT u.id,u.accountId,u.name,u.token,u.avatarUrl  FROM GitHubUser u WHERE u.id=#{creator}
+    </select>
+
+    <!--User findByAccountId(Integer id);-->
+    <select id="findByAccountId" resultType="com.csh.community.pojo.User">
+        SELECT u.id,u.accountId,u.name,u.token,u.avatarUrl  FROM GitHubUser u WHERE u.accountid=#{id}
+    </select>
+
+
+
+    <!--void updateUser(User u);-->
+    <update id="updateUser" parameterType="com.csh.community.pojo.User">
+        update  githubuser u set u.accountId=#{accountId},u.name=#{name},u.token=#{token},u.avatarUrl=#{avatarUrl} where u.id=#{id}
+
+    </update>
+
 
 
 </mapper>
+

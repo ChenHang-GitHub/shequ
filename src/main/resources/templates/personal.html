@@ -29,7 +29,7 @@
 
             <h2>
                 <div class="glyphicon glyphicon-th-list"></div>
-                <span>发现</span>
+                <span th:text="${headingName}"></span>
             </h2>
             <hr/>
 
@@ -37,15 +37,10 @@
 
                 <div class="media-left">
 
-
-
-                        <a>
-                            <img th:src="${question.user.avatarUrl}" alt="头像" class="img-circle"
-                                 width="64px" height="64px"/>
-                        </a>
-
-
-
+                    <a>
+                        <img th:src="${question.user.avatarUrl}" alt="头像" class="img-circle"
+                             width="64px" height="64px"/>
+                    </a>
                 </div>
 
                 <div class="media-right" style="color: #ac2925">
@@ -61,34 +56,44 @@
 
                 <hr/>
             </div>
-<!--分页开始-->
+            <!--分页开始-->
             <nav aria-label="Page navigation" style="float: right">
                 <ul class="pagination">
 
                     <li>
-                        <a th:href="@{/(pageNum=1)}" aria-label="Previous">
+                        <a th:href="@{/personal/questions(pageNum=1)}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
 
-                    <li th:each="page:${midpage}"><a th:href="@{/(pageNum=${page})}" th:text="${page}">1</a></li>
+                    <li th:each="page:${midpage}"><a th:href="@{/personal/questions(pageNum=${page})}" th:text="${page}">1</a></li>
 
                     <li>
-                        <a th:href="@{/(pageNum=${pages})}" aria-label="Next">
+                        <a th:href="@{/personal/questions(pageNum=${pages})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
 
                 </ul>
             </nav>
-<!--分页结束-->
 
         </div>
-
-
+        <!--9end-->
+        <!--3-->
+        <!--<span class="badge">14</span>-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h2>最近热门</h2>
+
+            <h2>最新消息</h2>
+            <div class="list-group">
+                <a href="/personal/questions" class="list-group-item active">我的问题</a>
+                <a href="/personal/replies" class="list-group-item">最新回复
+                    <span class="badge">14</span>
+                </a>
+                <a href="#" class="list-group-item">Morbi leo risus</a>
+            </div>
+
         </div>
+        <!--3end-->
     </div>
 </div>
 

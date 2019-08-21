@@ -7,8 +7,8 @@ public class User {
 
     private Integer id;
     private String name;
-    private String account_Id;
+    private String accountId;
     private String token;
-    private String avatar_url;
+    private String avatarUrl;
 
 }

@@ -6,6 +6,8 @@ import com.csh.community.dto.AccessTokenDTO;
 import com.csh.community.pojo.User;
 import com.csh.community.provider.GitHubPro;
 import com.csh.community.provider.GitHubUser;
+import com.csh.community.service.UserService;
+import com.github.pagehelper.PageHelper;
 import org.apache.ibatis.annotations.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,6 +39,9 @@ public class OAuthController {
     @Resource
     UserMapper userMapper;
 
+    @Resource
+    UserService userService;
+
     Logger logger =  LoggerFactory.getLogger(testController.class);
     @GetMapping(value = "callback")
     public String callBack(@RequestParam(name="code") String code,
@@ -61,14 +66,14 @@ public class OAuthController {
             logger.info(user.toString()+"???");
             User u= new User();
             //通过序列自增
-            u.setId(1);
+//            u.setId(1);
             u.setName(user.getName());
-            u.setAccount_Id(user.getId().toString());
-            u.setAvatar_url(user.getAvatar_url());
+            u.setAccountId(user.getId().toString());
+            u.setAvatarUrl(user.getAvatar_url());
             //自己创建token
             String token  = UUID.randomUUID().toString();
             u.setToken(token);
-            userMapper.insertGitHubUser(u);
+            userService.insertOrUpdateUser(u);
             response.addCookie(new Cookie("token",token));
             return  "redirect:/";
         }else

@@ -3,7 +3,7 @@ package com.csh.community.provider;
 import lombok.Data;
 
 @Data
-public class GitHubUser {
+public class    GitHubUser {
 
     private String name;
     private Long id;

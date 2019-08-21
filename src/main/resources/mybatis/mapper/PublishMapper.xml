@@ -9,8 +9,17 @@
         <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
             select quest_SEQ.nextval  as id from  dual
         </selectKey>
-        INSERT INTO question(id,title,description,creator,tag,gmt_create,gmt_modified) VALUES (#{id},#{title},#{description},#{creator},#{tag},#{gmt_create},#{gmt_modified})
+        INSERT INTO question(id,title,description,creator,tag,gmtCreate,gmtModified) VALUES (#{id},#{title},#{description},#{creator},#{tag},#{gmtCreate},#{gmtModified})
     </insert>
 
+    <select id="getAllQuestion" resultType="com.csh.community.pojo.Question">
+        SELECT * FROM question
+    </select>
+
+    <!--List<Question> getQuestionById(Integer id);-->
+
+    <select id="getQuestionById" resultType="com.csh.community.pojo.Question">
+        SELECT * FROM question where creator = #{id}
+    </select>
 
 </mapper>
