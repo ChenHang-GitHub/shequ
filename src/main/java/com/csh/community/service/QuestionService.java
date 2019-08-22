@@ -11,4 +11,6 @@ public interface QuestionService {
     List<QuestionDTO> getSelfList(Integer id);
 
     QuestionDTO getQuestionById(Integer id);
+
+    void incViewCount(Integer id);
 }

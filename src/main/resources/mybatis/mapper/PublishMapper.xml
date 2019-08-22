@@ -28,4 +28,12 @@
     </select>
 
 
+    <!--void incViewCnt(Integer id);-->
+
+    <update id="incViewCnt">
+        update  question q set q.viewcount=(q.viewcount+1) where q.id=#{id}
+    </update>
+
+
+
 </mapper>

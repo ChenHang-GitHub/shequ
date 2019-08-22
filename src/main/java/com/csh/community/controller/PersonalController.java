@@ -21,7 +21,8 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+* 我的提问功能实现*/
 @Controller
 public class PersonalController {
 

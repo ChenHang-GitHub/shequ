@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import javax.annotation.Resource;
 
 @Controller
-public class PersonalQuestionController {
+public class QuestionController {
 
 
     @Resource
@@ -22,6 +22,9 @@ public class PersonalQuestionController {
     {
 
         QuestionDTO questionDTO= questionService.getQuestionById(id);
+        //每次访问问题页面 都让浏览数+1 当 访问登录用户自己的页面不+1；
+        questionService.incViewCount(id);
+
         model.addAttribute("questionDTO",questionDTO);
         return "question";
     }

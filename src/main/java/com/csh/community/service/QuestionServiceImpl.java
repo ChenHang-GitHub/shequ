@@ -26,6 +26,7 @@ public class QuestionServiceImpl implements QuestionService {
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         List<Question> questions = new ArrayList<>();
         questions = publishMapper.getAllQuestion();
+        System.out.println(questions.toString()+"222222222222222222222222222222");
         for (Question question : questions
                 ) {
             User user = userMapper.findById(question.getCreator());
@@ -73,5 +74,13 @@ public class QuestionServiceImpl implements QuestionService {
         questionDTO.setUser(user);
         System.out.println(questionDTO + "测试DTO");
         return questionDTO;
+    }
+
+    @Override
+    public void incViewCount(Integer id) {
+
+        publishMapper.incViewCnt(id);
+
+
     }
 }
