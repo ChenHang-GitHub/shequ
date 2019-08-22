@@ -9,4 +9,6 @@ public interface QuestionService {
     List<QuestionDTO> getList();
 
     List<QuestionDTO> getSelfList(Integer id);
+
+    QuestionDTO getQuestionById(Integer id);
 }

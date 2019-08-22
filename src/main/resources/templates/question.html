@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+
+
+    <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}">
+    <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
+            type="application/javascript"></script>
+    <script src="/js/bootstrap.js"></script>
+
+    <link rel="icon" type="image/x-icon" href="../static/image/favicon.ico">
+    <!--my.css-->
+    <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
+
+
+</head>
+<body>
+
+<div th:replace="head::headbar"></div>
+
+<!--流式布局-->
+<div class="container-fluid main">
+    <div class="row">
+        <!--9-->
+
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+
+            <h4>
+                <div class="glyphicon glyphicon-search">
+                    <span th:text="${questionDTO.title}"></span>
+                </div>
+            </h4>
+            <br/>
+            <span class="text-desc">
+                        作者：<span th:text="${questionDTO.user.name}"></span>
+                        |阅读数：<span th:text="${questionDTO.viewCount}"></span><span>次浏览• </span>
+                        |发布时间：<span th:text="${#dates.format(questionDTO.gmtCreate,'yyyy-MM-dd HH:mm')}">1 小时前</span>
+                    <br/>
+                <span></span>
+            </span>
+
+
+            <!--description-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${questionDTO.description}">
+            </div>
+
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+            <!--编辑-->
+            <a class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mycolor" th:href="@{/publish/}+${questionDTO.id}" th:if="${session.user!=null && questionDTO.creator==session.user.id}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                编辑
+            </a>
+
+
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  th:if="${session.user!=null && questionDTO.creator==session.user.id}"/>
+
+        </div>
+        <!--9end-->
+
+
+        <!--3-->
+        <!--<span class="badge">14</span>-->
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+
+            <!--上-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4 class="mycolor">发起人</h4>
+
+                <div class="media" >
+
+                    <div class="media-left">
+                        <a>
+                            <img th:src="${questionDTO.user.avatarUrl}" alt="头像" class="img-circle"
+                                 width="64px" height="64px"/>
+                        </a>
+                    </div>
+
+                    <div class="media-right" style="color: #ac2925">
+                        <!--<a th:href="@{'/question/'+${question.id}}"><h4 class="media-heading" th:text="${question.title}"></h4></a>-->
+                        <span th:text="${questionDTO.user.name}"> </span> <br>
+
+                        <span class="text-desc">
+                        </span>
+                    </div>
+
+                    <hr/>
+
+                </div>
+            </div>
+
+            <!--上end-->
+            <!--下-->
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                    <h4 class="mycolor">相关问题</h4>
+
+               </div>
+            <!--下end-->
+
+            </div>
+
+    </div>
+        <!--3end-->
+
+</div>
+
+</body>
+</html>

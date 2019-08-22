@@ -9,15 +9,19 @@
     <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
     <link rel="stylesheet" href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}">
     <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
-            type="application/javascript"></script>
-    <script src="js/bootstrap.js"></script>
+            ></script>
 
     <link rel="icon" type="image/x-icon" href="../static/image/favicon.ico">
     <!--my.css-->
     <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
+    <script src="../static/js/bootstrap.js" th:src="@{/js/bootstrap.js}"></script>
+<!---->
 
 </head>
 <body>
+
+
+
 
 <nav class="navbar navbar-default" th:fragment="headbar">
     <div class="container-fluid">
@@ -30,8 +34,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Community</a>
+            <a class="navbar-brand" href="/">Community</a>
         </div>
+
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -66,14 +71,16 @@
                     <a href="/publish">发布</a>
                 </li>
                 <li class="dropdown" th:if="${session.user!=null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                        aria-expanded="false" >
                         <span th:text="${session.user.getName()}"></span>
                         <span class="caret"></span>
                     </a>
+
                     <ul class="dropdown-menu">
                         <li><a th:href="@{/personal/questions}">我的提问</a></li>
-                        <li><a href="#">退出登录</a></li>
+                        <li><a th:href="@{/logout}">退出登录</a></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>

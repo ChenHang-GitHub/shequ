@@ -61,27 +61,27 @@ public class PersonalController {
         }
 
         //
-        User user=null;
-        Cookie[] cookies = request.getCookies();
-        if(cookies!=null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("token")) {
-                    logger.info("查询Cookie携带token");
-                    String token = cookie.getValue();
-                     user = userMapper.findByToken(token);
-                    logger.info(user.getName() + user.getToken()+user.getAvatarUrl());
-                /*
-通过cookie存储一个session_id，然后具体的数据则是保存在session中。如果用户已经登录，则服务器会
-在cookie中保存一个session_id，下次再次请求的时候，会把该session_id携带上来，服务器根据session_id在session
- 库中获取用户的session数据。就能知道该用户到底是谁，以及之前保存的一些状态信息
- */
-                    if (user != null) {
-                        request.getSession().setAttribute("user", user);
-                    }
-                    break;
-                }
-            }
-        }
+        User user = (User) request.getSession().getAttribute("user");
+        //        Cookie[] cookies = request.getCookies();
+//        if(cookies!=null) {
+//            for (Cookie cookie : cookies) {
+//                if (cookie.getName().equals("token")) {
+//                    logger.info("查询Cookie携带token");
+//                    String token = cookie.getValue();
+//                     user = userMapper.findByToken(token);
+//                    logger.info(user.getName() + user.getToken()+user.getAvatarUrl());
+//                /*
+//通过cookie存储一个session_id，然后具体的数据则是保存在session中。如果用户已经登录，则服务器会
+//在cookie中保存一个session_id，下次再次请求的时候，会把该session_id携带上来，服务器根据session_id在session
+// 库中获取用户的session数据。就能知道该用户到底是谁，以及之前保存的一些状态信息
+// */
+//                    if (user != null) {
+//                        request.getSession().setAttribute("user", user);
+//                    }
+//                    break;
+//                }
+//            }
+//        }
         //每次登入首页的时候 查询出首页信息
         List<QuestionDTO> questionDTOList =  new ArrayList<>();
         //pagehelper

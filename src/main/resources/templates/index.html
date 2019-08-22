@@ -21,6 +21,9 @@
 
 <div th:replace="head::headbar"></div>
 
+
+
+
 <!--流式布局-->
 <div class="container-fluid main">
     <div class="row">
@@ -36,26 +39,20 @@
             <div class="media" th:each="question:${questionDTO}">
 
                 <div class="media-left">
-
-
-
                         <a>
                             <img th:src="${question.user.avatarUrl}" alt="头像" class="img-circle"
                                  width="64px" height="64px"/>
                         </a>
-
-
-
                 </div>
 
                 <div class="media-right" style="color: #ac2925">
-                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <a th:href="@{'/question/'+${question.id}}"><h4 class="media-heading" th:text="${question.title}"></h4></a>
                     <span th:text="${question.tag}"> </span> <br>
 
                     <span class="text-desc">
                         <span th:text="${question.commentCount}"></span><span>个回复• </span>
                         <span th:text="${question.viewCount}"></span><span>次浏览• </span>
-                        <span th:text="${#dates.format(question.gmtCreate,'dd,MMMM,yyyy')}">1 小时前</span>
+                        <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}">1 小时前</span>
                     </span>
                 </div>
 

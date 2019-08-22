@@ -22,4 +22,10 @@
         SELECT * FROM question where creator = #{id}
     </select>
 
+    <!--Question getPersonalQuestion(Integer id);-->
+    <select id="getPersonalQuestion" resultType="com.csh.community.pojo.Question">
+        SELECT * FROM question where id = #{id}
+    </select>
+
+
 </mapper>

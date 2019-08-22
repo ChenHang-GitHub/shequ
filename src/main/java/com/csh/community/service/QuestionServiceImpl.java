@@ -23,16 +23,16 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<QuestionDTO> getList() {
-        List<QuestionDTO> questionDTOList =  new ArrayList<>();
-        List<Question> questions =  new ArrayList<>();
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        List<Question> questions = new ArrayList<>();
         questions = publishMapper.getAllQuestion();
-        for (Question question:questions
-             ) {
-            User user =userMapper.findById(question.getCreator());
-            System.out.println(user+"user????????"+question.getCreator());
-            QuestionDTO questionDTO =  new QuestionDTO();
+        for (Question question : questions
+                ) {
+            User user = userMapper.findById(question.getCreator());
+            System.out.println(user + "user????????" + question.getCreator());
+            QuestionDTO questionDTO = new QuestionDTO();
             //copy
-            BeanUtils.copyProperties(question,questionDTO);
+            BeanUtils.copyProperties(question, questionDTO);
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
             System.out.println(questionDTO);
@@ -42,18 +42,36 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public List<QuestionDTO> getSelfList(Integer id) {
-        List<QuestionDTO> questionDTOList =  new ArrayList<>();
-        List<Question> questions =  new ArrayList<>();
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        List<Question> questions = new ArrayList<>();
+        // id = #creator
         questions = publishMapper.getQuestionById(id);
-        for (Question question:questions
+        for (Question question : questions
                 ) {
-            User user =userMapper.findById(question.getCreator());
-            QuestionDTO questionDTO =  new QuestionDTO();
+            User user = userMapper.findById(question.getCreator());
+            QuestionDTO questionDTO = new QuestionDTO();
             //copy
-            BeanUtils.copyProperties(question,questionDTO);
+            BeanUtils.copyProperties(question, questionDTO);
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
         return questionDTOList;
+    }
+
+    @Override
+    public QuestionDTO getQuestionById(Integer id) {
+
+        QuestionDTO questionDTO = new QuestionDTO();
+
+        Question question = publishMapper.getPersonalQuestion(id);
+
+        System.out.println(question.toString());
+        BeanUtils.copyProperties(question, questionDTO);
+
+        User user = userMapper.findById(question.getCreator());
+
+        questionDTO.setUser(user);
+        System.out.println(questionDTO + "测试DTO");
+        return questionDTO;
     }
 }

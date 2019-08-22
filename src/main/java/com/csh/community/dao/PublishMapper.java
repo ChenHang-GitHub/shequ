@@ -15,4 +15,7 @@ public interface PublishMapper {
     List<Question> getAllQuestion();
 
     List<Question> getQuestionById(Integer id);
+
+
+    Question getPersonalQuestion(Integer id);
 }

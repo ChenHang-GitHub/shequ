@@ -21,6 +21,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.UUID;
 
 @Controller
@@ -82,5 +83,15 @@ public class OAuthController {
         }
     }
 
+    @GetMapping(value = "/logout")
+    public  String logout (HttpServletRequest request, HttpSession session ,HttpServletResponse response){
+
+        request.getSession().removeAttribute("user");
+        Cookie user = new Cookie("token", null);
+        response.addCookie(user);
+        user.setMaxAge(0);
+        logger.info("退出并销毁session和cookies");
+        return "redirect:/";
+    }
 
 }

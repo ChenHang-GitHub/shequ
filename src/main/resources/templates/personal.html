@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
-
     <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
     <link rel="stylesheet" href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}">
-    <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
+    <script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"
             type="application/javascript"></script>
     <script src="js/bootstrap.js"></script>
 
@@ -44,13 +42,13 @@
                 </div>
 
                 <div class="media-right" style="color: #ac2925">
-                    <h4 class="media-heading" th:text="${question.title}"></h4>
+                    <a th:href="@{'/question/'+${question.id}}"><h4 class="media-heading" th:text="${question.title}"></h4></a>
                     <span th:text="${question.tag}"> </span> <br>
 
                     <span class="text-desc">
                         <span th:text="${question.commentCount}"></span><span>个回复• </span>
                         <span th:text="${question.viewCount}"></span><span>次浏览• </span>
-                        <span th:text="${#dates.format(question.gmtCreate,'dd,MMMM,yyyy')}">1 小时前</span>
+                        <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}">1 小时前</span>
                     </span>
                 </div>
 

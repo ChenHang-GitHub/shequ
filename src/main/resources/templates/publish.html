@@ -3,76 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.css"    th:href="@{/css/bootstrap.css}"/>
+
+    <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
     <link rel="stylesheet" href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}">
-    <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}" type="application/javascript"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
+            type="application/javascript"></script>
+    <script src="/js/bootstrap.js"></script>
 
     <link rel="icon" type="image/x-icon" href="../static/image/favicon.ico">
+    <!--my.css-->
     <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
 
 
 </head>
 <body style="background-color: #efefed">
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Community</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Community</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                </div>
-                <button type="submit" class="btn btn-default">Search</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-
-
-                <li class="dropdown" th:if="${session.user!=null}">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" th:text="${session.user.getName()}"> <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-
-                <li th:if="${session.user==null}">
-                    <a href="https://github.com/login/oauth/authorize?client_id=3b5993c41418af591fc3&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登录
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-</nav>
+<div th:replace="head::headbar"></div>
 
 <!--流式布局-->
 <div class="container-fluid main">
@@ -82,6 +29,10 @@
             <h2> <div class="glyphicon glyphicon-plus"></div> 发起</h2>
             <hr>
             <form action="/publish" method="post">
+
+                <input type="hidden" name="_method" value="put" th:if="${updateId!=null}"/>
+                <input type="hidden" name="updateId" th:if="${updateId!=null}" th:value="${updateId}">
+
                 <div class="form-group">
                     <label for="title">*问题标题</label>
                     <input type="text" class="form-control" id="title" name="title" placeholder="Email" required="true" th:value="${title!=null}?${title}">
@@ -98,7 +49,7 @@
                <div th:if="${error!=null}">
                    <div class="alert alert-danger" th:text="${error}"></div>
                </div>
-                <button type="submit" class="btn btn-success btn-publish">发布</button>
+                <button type="submit" class="btn btn-success btn-publish" th:text="${updateId!=null}?'修改' : '发布'"></button>
             </form>
         </div>
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
