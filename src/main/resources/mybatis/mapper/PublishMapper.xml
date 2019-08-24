@@ -34,6 +34,10 @@
         update  question q set q.viewcount=(q.viewcount+1) where q.id=#{id}
     </update>
 
+    <!--void incCommentCnt(Integer id);-->
+    <update id="incCommentCnt">
+        update  question q set q.commentcount=(q.commentcount+1) where q.id=#{id}
+    </update>
 
 
 </mapper>

@@ -83,4 +83,9 @@ public class QuestionServiceImpl implements QuestionService {
 
 
     }
+
+    @Override
+    public void incCommentCount(Integer id) {
+        publishMapper.incCommentCnt(id);
+    }
 }

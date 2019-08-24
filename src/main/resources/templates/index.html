@@ -19,6 +19,21 @@
 </head>
 <body>
 
+<script  type="application/javascript">
+    window.onload= function () {
+        var bool = window.localStorage.getItem("boolean");
+        if(bool=="1")
+        {
+            alert("登录成功");
+            window.location.href="about:blank";
+            window.localStorage.removeItem("boolean")
+            window.close();
+        }
+
+    }
+</script>
+
+
 <div th:replace="head::headbar"></div>
 
 

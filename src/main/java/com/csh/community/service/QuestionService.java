@@ -13,4 +13,6 @@ public interface QuestionService {
     QuestionDTO getQuestionById(Integer id);
 
     void incViewCount(Integer id);
+
+    void incCommentCount(Integer id);
 }

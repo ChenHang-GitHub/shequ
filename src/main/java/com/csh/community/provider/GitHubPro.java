@@ -51,6 +51,10 @@ public class GitHubPro {
 
             String string = response.body().string();
             GitHubUser gitHubUser = JSON.parseObject(string, GitHubUser.class);
+            if(gitHubUser.getName()==null || gitHubUser.getName().equals(""))
+            {
+                gitHubUser.setName("You need GitHub Name");
+            }
             return gitHubUser;
         }
 

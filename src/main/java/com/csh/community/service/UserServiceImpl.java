@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
         if(user==null)
         {
             //insert
-            System.out.println("user is null"+Integer.valueOf(u.getAccountId()));
+            System.out.println("user is null"+Integer.valueOf(u.getAccountId())+u.toString());
             userMapper.insertGitHubUser(u);
         }else
         {

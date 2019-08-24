@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csh.community.dao.CommentInfoMapper">
+
+    <!--void insertComment(CommentInfo commentInfo);-->
+
+
+    <insert id="insertComment" useGeneratedKeys="true" keyProperty="id">
+
+        <selectKey keyProperty="id" order="BEFORE" resultType="Integer">
+            select comment_SEQ.nextval as id from dual
+        </selectKey>
+        INSERT INTO commentInfo(id,parentId,type,commentator,gmtCreate,gmtModify,likeCount,content) VALUES
+        (#{id},#{parentId},#{type},#{commentator},#{gmtCreate},#{gmtModify},#{likeCount},#{content})
+    </insert>
+
+    <!--List<CommentInfo> getCommentInfoById(Integer id);-->
+    <select id="getCommentInfoById" resultType="com.csh.community.pojo.CommentInfo">
+              select  * from  commentinfo where parentid = #{id} order by gmtcreate desc
+    </select>
+
+
+</mapper>

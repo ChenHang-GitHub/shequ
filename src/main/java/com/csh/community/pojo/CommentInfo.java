@@ -1,14 +1,15 @@
-package com.csh.community.dto;
+package com.csh.community.pojo;
 
 import lombok.Data;
 
 @Data
-public class commentInfo {
-    private  Long id;
+public class CommentInfo {
+    private  int id;
     private  Long parentId;
     private  int  type;
     private  int  commentator;
     private  Long gmtCreate ;
     private  Long gmtModify;
     private  Long likeCount;
+    private  String content;
 }

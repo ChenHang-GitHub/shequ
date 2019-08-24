@@ -24,6 +24,7 @@ public class SessionInterceptor implements HandlerInterceptor {
         System.out.println("进入pre拦截器");
         Cookie[] cookies = request.getCookies();
         if(cookies!=null) {
+            System.out.println("cookies!=null");
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals("token")) {
                     String token = cookie.getValue();
@@ -31,18 +32,18 @@ public class SessionInterceptor implements HandlerInterceptor {
                     User user = userMapper.findByToken(token);
 //                    System.out.println(user.toString());
 //                    logger.info(user.getName() + user.getToken()+user.getAvatarUrl());
-                /*
+ /*
 通过cookie存储一个session_id，然后具体的数据则是保存在session中。如果用户已经登录，则服务器会
 在cookie中保存一个session_id，下次再次请求的时候，会把该session_id携带上来，服务器根据session_id在session
  库中获取用户的session数据。就能知道该用户到底是谁，以及之前保存的一些状态信息
  */
                     if (user != null) {
                         request.getSession().setAttribute("user", user);
+                        System.out.println("user!=null");
                     }
                     break;
                 }
             }
-
         }
         return true;
     }

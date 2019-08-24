@@ -20,4 +20,6 @@ public interface PublishMapper {
     Question getPersonalQuestion(Integer id);
 
     void incViewCnt(Integer id);
+
+    void incCommentCnt(Integer id);
 }
