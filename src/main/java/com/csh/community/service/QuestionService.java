@@ -15,4 +15,6 @@ public interface QuestionService {
     void incViewCount(Integer id);
 
     void incCommentCount(Integer id);
+
+    void incComment_commentCount(int i);
 }

@@ -22,4 +22,8 @@
     </select>
 
 
+    <!--List<CommentInfoDTO_ToPage> getCommentByIdAndType(int id, int type);-->
+    <select id="getCommentByIdAndType" resultType="com.csh.community.pojo.CommentInfo">
+             select  * from  commentinfo where parentid=#{id} and type =#{type}
+    </select>
 </mapper>

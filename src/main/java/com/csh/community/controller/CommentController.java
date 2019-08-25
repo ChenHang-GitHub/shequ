@@ -2,6 +2,7 @@ package com.csh.community.controller;
 
 import com.csh.community.dao.CommentInfoMapper;
 import com.csh.community.dto.CommentInfoDTO_FromPage;
+import com.csh.community.dto.CommentInfoDTO_ToPage;
 import com.csh.community.dto.MessageDTO;
 import com.csh.community.exception.CustomizeErrorCode;
 import com.csh.community.pojo.CommentInfo;
@@ -10,12 +11,11 @@ import com.csh.community.service.CommentService;
 import com.csh.community.service.QuestionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class CommentController {
@@ -35,7 +35,7 @@ public class CommentController {
     @PostMapping(value = "/comment")
     @ResponseBody
     @Transactional
-    public  Object test (@RequestBody CommentInfoDTO_FromPage commentInfoDTOFromPage,
+    public  Object insertTypeOneComment (@RequestBody CommentInfoDTO_FromPage commentInfoDTOFromPage,
                          HttpServletRequest request)
     {
         User user = (User)request.getSession().getAttribute("user");
@@ -67,10 +67,30 @@ public class CommentController {
         //插入回复的消息
         commentService.insertCommentService(commentInfo);
         //让回复数+1
+        if(commentInfo.getType()==1)
+        {
+            questionService.incCommentCount(commentInfoDTOFromPage.getParentId().intValue());
+        }else if(commentInfo.getType()==2)
+        {
+            System.out.println("type=============================22222222");
+            questionService.incComment_commentCount(commentInfoDTOFromPage.getParentId().intValue());
+        }
 
-        questionService.incCommentCount(commentInfoDTOFromPage.getParentId().intValue());
         return  commentInfo;
     }
 
+
+
+
+
+/*
+* 获取二级评论*/
+    @ResponseBody
+    @GetMapping(value = "/comment/{id}")
+    public Object comments(@PathVariable(name = "id") int id) {
+        int type  = 2;
+        List<CommentInfoDTO_ToPage> commentInfoDTO_toPages = commentService.getTypeTwoCommentList(id,type);
+        return commentInfoDTO_toPages;
+    }
 
 }

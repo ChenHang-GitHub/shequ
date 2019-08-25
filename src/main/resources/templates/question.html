@@ -16,6 +16,7 @@
     <!--my.css-->
     <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
     <script src="/js/myJs.js"></script>
+    <script src="../static/js/moment.js" th:src="@{/js/moment.js}"></script>
 
 
 </head>
@@ -61,12 +62,12 @@
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
                 th:if="${session.user!=null && questionDTO.creator==session.user.id}"/>
 
-            <h4 th:text="${commentLists.size()}+'个回复'"></h4>
+            <h4 th:text="${commentLists.size()}+'条回复'"></h4>
             <!--回复列表-->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"   th:each="commentList:${commentLists}">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:each="commentList:${commentLists}">
 
                 <div>
-                    <div class="media-left" >
+                    <div class="media-left">
                         <a>
                             <img th:src="${commentList.user.avatarUrl}" alt="头像" class="img-circle"
                                  width="64px" height="64px"/>
@@ -74,120 +75,116 @@
                         <span th:text="${commentList.user.name}" class="mycolor"></span>
                     </div>
                     <div th:text="${commentList.content}">回复内容</div>
+                    <span th:text="${#dates.format(commentList.gmtCreate,'yyyy-MM-dd HH:mm')}" class="btn-publish"></span>
                     <div class="mycolor">
                         <!--点赞 评论 时间-->
+                        <!--<a href="#" class="btn btn-primary" role="button" data-toggle="collapse" aria-expanded="false"-->
+                           <!--aria-controls="collapseExample">-->
+                            <!--<span class="glyphicon glyphicon-thumbs-up"></span>-->
+                        <!--</a>-->
 
-                        <a  href="#" class="btn btn-primary"  role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseExample">
-                            <span class="glyphicon glyphicon-thumbs-up" ></span>
-                        </a>
+                        <!--<a href="#" th:data-id="${commentList.id}" class="btn btn-primary" role="button"-->
+                           <!--data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">-->
+                            <!--<span class="glyphicon glyphicon-comment" style="margin-left: 10px"></span>-->
+                        <!--</a>-->
+                        <!--<button type="button" class="btn btn-success btn-publish" onclick="postComment();">回复</button>-->
 
-                        <a  href="#"  th:data-id="${commentList.id}" class="btn btn-primary"  role="button" data-toggle="collapse"  aria-expanded="false" aria-controls="collapseExample">
-                            <span class="glyphicon glyphicon-comment" style="margin-left: 10px"></span>
-                        </a>
-                        <!--下拉   二级回复-->
-                        <div class="collapse"  id="${commentList.id}">
-                            <div class="well">
+                        <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                        <span th:data-id="${commentList.id}"
+                              onclick="collapseComments(this)" class="comment-icon">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                    <span th:text="${commentList.commentcount}"></span>
+                                </span>
+                        <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    </div>
+                    <!--下拉   二级回复-->
 
-                                <div>
-                                    <div class="media-left">
-                                        <a>
-                                            <img th:src="${session.user.avatarUrl}" alt="头像" class="img-circle"
-                                                 width="64px" height="64px"/>
-                                        </a>
-                                        <span th:text="${session.user.name}"></span>
-                                        <input type="text" placeholder="你的评论..." class="form-control">
-                                        <button  type="button" class="btn-success btn-publish">评论</button>
-                                    </div>
-                                </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse  sub-comments "
+                         th:id="${'comment-'+commentList.id}">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <input type="text" class="form-control" placeholder="说点什么…"  style="margin-top: 20px"
+                                   th:id="${'input-'+commentList.id}">
+                            <button type="button" class="btn btn-success pull-right" onclick="comment(this)" style="margin-top: 15px"
+                                    th:data-id="${commentList.id}"><span>评论</span>
+                            </button>
 
-                            </div>
                         </div>
-
-                        <span th:text="${#dates.format(commentList.gmtCreate,'yyyy-MM-dd HH:mm')}" class="btn-publish"></span>
                     </div>
 
-
-
-
-                    <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 </div>
+                <!--<span th:text="${#dates.format(commentList.gmtCreate,'yyyy-MM-dd HH:mm')}" class="btn-publish"></span>-->
+            </div>
+
+
+            <!--回复功能-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="IdUserToClose">
+
+                <div>
+                    <div class="media-left" th:if="${session.user!=null}">
+                        <a>
+                            <img th:src="${session.user.avatarUrl}" alt="头像" class="img-circle"
+                                 width="64px" height="64px"/>
+                        </a>
+                        <span th:text="${session.user.name}"></span>
+                    </div>
+                </div>
+                <textarea class="form-control" id="comment-textarea" rows="3" style="margin: 10px"></textarea>
+                <input type="hidden" id="questionId" th:value="${questionDTO.id}">
+                <button type="button" class="btn btn-success btn-publish" onclick="postComment();">回复</button>
+
 
             </div>
 
-                    <!--回复功能-->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="IdUserToClose">
 
-                        <div>
-                            <div class="media-left" th:if="${session.user!=null}">
-                                <a>
-                                    <img th:src="${session.user.avatarUrl}" alt="头像" class="img-circle"
-                                         width="64px" height="64px"/>
-                                </a>
-                                <span th:text="${session.user.name}"></span>
-                            </div>
-                        </div>
-                        <textarea class="form-control" id="comment-textarea" rows="3" style="margin: 10px"></textarea>
-                        <input type="hidden" id="questionId" th:value="${questionDTO.id}">
-                        <button type="button" class="btn btn-success btn-publish" onclick="postComment();">回复</button>
+        </div>
+        <!--9end-->
 
 
+        <!--3-->
+        <!--<span class="badge">14</span>-->
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
 
+            <!--上-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h4 class="mycolor">发起人</h4>
+
+                <div class="media">
+
+                    <div class="media-left">
+                        <a>
+                            <img th:src="${questionDTO.user.avatarUrl}" alt="头像" class="img-circle"
+                                 width="64px" height="64px"/>
+                        </a>
                     </div>
 
+                    <div class="media-right" style="color: #ac2925">
+                        <!--<a th:href="@{'/question/'+${question.id}}"><h4 class="media-heading" th:text="${question.title}"></h4></a>-->
+                        <span th:text="${questionDTO.user.name}"> </span> <br>
 
-                </div>
-                <!--9end-->
-
-
-
-
-                <!--3-->
-                <!--<span class="badge">14</span>-->
-                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-
-                    <!--上-->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <h4 class="mycolor">发起人</h4>
-
-                        <div class="media">
-
-                            <div class="media-left">
-                                <a>
-                                    <img th:src="${questionDTO.user.avatarUrl}" alt="头像" class="img-circle"
-                                         width="64px" height="64px"/>
-                                </a>
-                            </div>
-
-                            <div class="media-right" style="color: #ac2925">
-                                <!--<a th:href="@{'/question/'+${question.id}}"><h4 class="media-heading" th:text="${question.title}"></h4></a>-->
-                                <span th:text="${questionDTO.user.name}"> </span> <br>
-
-                                <span class="text-desc">
+                        <span class="text-desc">
                         </span>
-                            </div>
-
-                            <hr/>
-
-                        </div>
                     </div>
 
-                    <!--上end-->
-                    <!--下-->
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-                        <h4 class="mycolor">相关问题</h4>
-
-                    </div>
-                    <!--下end-->
+                    <hr/>
 
                 </div>
+            </div>
+
+            <!--上end-->
+            <!--下-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                <h4 class="mycolor">相关问题</h4>
 
             </div>
-            <!--3end-->
+            <!--下end-->
 
         </div>
 
+    </div>
+    <!--3end-->
 
+</div>
 
 
 </body>

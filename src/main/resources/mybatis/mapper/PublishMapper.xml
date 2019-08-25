@@ -38,6 +38,9 @@
     <update id="incCommentCnt">
         update  question q set q.commentcount=(q.commentcount+1) where q.id=#{id}
     </update>
-
+    <!--void incComment_commentCnt(int i);-->
+    <update id="incComment_commentCnt">
+        update  commentinfo c set c.commentcount=(c.commentcount+1) where c.id=#{id}
+    </update>
 
 </mapper>

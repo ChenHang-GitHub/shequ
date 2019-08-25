@@ -12,4 +12,5 @@ public class CommentInfo {
     private  Long gmtModify;
     private  Long likeCount;
     private  String content;
+    private  String commentcount;
 }

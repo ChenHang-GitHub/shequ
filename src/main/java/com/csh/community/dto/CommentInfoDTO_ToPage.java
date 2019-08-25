@@ -14,6 +14,7 @@ public class CommentInfoDTO_ToPage  {
     private Long gmtModify;
     private Long likeCount;
     private String content;
+    private  String commentcount;
     private User user;
 
 }

@@ -9,4 +9,6 @@ public interface CommentService {
     void insertCommentService(CommentInfo commentInfo);
 
     List<CommentInfoDTO_ToPage> getCommentInfoDTOList(Integer id);
+
+    List<CommentInfoDTO_ToPage> getTypeTwoCommentList(int id, int type);
 }

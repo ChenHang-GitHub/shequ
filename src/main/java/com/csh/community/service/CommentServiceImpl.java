@@ -48,4 +48,21 @@ public class CommentServiceImpl implements  CommentService {
         System.out.println(commentInfoDTO_toPages.toString());
         return commentInfoDTO_toPages;
     }
+
+    @Override
+    public List<CommentInfoDTO_ToPage> getTypeTwoCommentList(int id, int type) {
+        List<CommentInfo> commentInfoList = commentInfoMapper.getCommentByIdAndType(id,type);
+        List<CommentInfoDTO_ToPage> commentInfoDTO_toPages = new ArrayList<>();
+        for (CommentInfo commentInfo:commentInfoList
+             ) {
+            User u  =  userMapper.findById(commentInfo.getCommentator());
+            CommentInfoDTO_ToPage commentInfoDTO_toPage = new CommentInfoDTO_ToPage();
+            BeanUtils.copyProperties(commentInfo,commentInfoDTO_toPage);
+            commentInfoDTO_toPage.setUser(u);
+            commentInfoDTO_toPages.add(commentInfoDTO_toPage);
+        }
+
+        System.out.println("test 2ji ::" +commentInfoDTO_toPages.toString());
+        return commentInfoDTO_toPages;
+    }
 }

@@ -16,3 +16,20 @@ body{
 .mycolor{
     color: #999;
 }
+
+
+.community-menu {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.media-object {
+    width: 38px;
+    height: 38px;
+}
+
+
+.comment-font{
+    color: #761c19;
+}

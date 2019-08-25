@@ -22,4 +22,6 @@ public interface PublishMapper {
     void incViewCnt(Integer id);
 
     void incCommentCnt(Integer id);
+
+    void incComment_commentCnt(int i);
 }
