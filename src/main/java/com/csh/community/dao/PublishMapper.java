@@ -28,4 +28,6 @@ public interface PublishMapper {
     List<Question> getRelatedQuestion(Question question);
 
     void update(Question question);
+
+    Question getQuesById(Long parentId);
 }

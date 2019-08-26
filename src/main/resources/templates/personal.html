@@ -23,7 +23,7 @@
 <div class="container-fluid main">
     <div class="row">
         <!--9-->
-        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" th:if="${headingName=='我的提问'}">
 
             <h2>
                 <div class="glyphicon glyphicon-th-list"></div>
@@ -42,7 +42,8 @@
                 </div>
 
                 <div class="media-right" style="color: #ac2925">
-                    <a th:href="@{'/question/'+${question.id}}"><h4 class="media-heading" th:text="${question.title}"></h4></a>
+                    <a th:href="@{'/question/'+${question.id}}"><h4 class="media-heading"
+                                                                    th:text="${question.title}"></h4></a>
                     <span th:text="${question.tag}"> </span> <br>
 
                     <span class="text-desc">
@@ -64,7 +65,8 @@
                         </a>
                     </li>
 
-                    <li th:each="page:${midpage}"><a th:href="@{/personal/questions(pageNum=${page})}" th:text="${page}">1</a></li>
+                    <li th:each="page:${midpage}"><a th:href="@{/personal/questions(pageNum=${page})}"
+                                                     th:text="${page}">1</a></li>
 
                     <li>
                         <a th:href="@{/personal/questions(pageNum=${pages})}" aria-label="Next">
@@ -76,20 +78,73 @@
             </nav>
 
         </div>
+
+
+        <!--我的通知-->
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12" th:if="${headingName=='我的通知'}">
+
+            <h2>
+                <div class="glyphicon glyphicon-th-list"></div>
+                <span th:text="${headingName}"></span>
+            </h2>
+            <hr/>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+            <div class="media">
+                <div th:each="no:${notifications}">
+                    <div class="media-right">
+                    <span class="text-desc">
+                        <span th:text="${no.getNotifiername()}" style="color: #ac2925"></span>
+                        <span th:text="${no.getTypeName()}"></span>
+                        <a  th:href="@{'/notification/'+ ${no.id}}" th:text="${no.getOutertitle()}"></a>
+                        <div>
+                            <span style="line-height: 2;font-style: italic;color: blue;" th:text="${#dates.format(no.getGmtcreate(),'yyyy-MM-dd HH:mm')}"></span>
+                        </div>
+                         <span class="badge" style="float: left;" th:if="${no.status==0}">未读</span>
+                    </span>
+                    </div>
+                    <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+                </div>
+            </div>
+</div>
+            <hr/>
+
+            <!--分页开始-->
+            <nav aria-label="Page navigation" style="float: right">
+                <ul class="pagination">
+
+                    <li>
+                        <a th:href="@{/personal/questions(pageNum=1)}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <li th:each="page:${midpage}"><a th:href="@{/personal/questions(pageNum=${page})}"
+                                                     th:text="${page}">1</a></li>
+
+                    <li>
+                        <a th:href="@{/personal/questions(pageNum=${pages})}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+        <!--通知结束-->
+
+
         <!--9end-->
         <!--3-->
         <!--<span class="badge">14</span>-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
 
             <h2>最新消息</h2>
-            <div class="list-group">
+            <div class="list-group section">
                 <a href="/personal/questions" class="list-group-item active">我的问题</a>
                 <a href="/personal/replies" class="list-group-item">最新回复
-                    <span class="badge">14</span>
+                    <span class="badge" th:text="${session.unReadCount}"></span>
                 </a>
-                <a href="#" class="list-group-item">Morbi leo risus</a>
             </div>
-
         </div>
         <!--3end-->
     </div>

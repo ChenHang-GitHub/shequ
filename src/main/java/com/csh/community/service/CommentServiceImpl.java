@@ -1,9 +1,13 @@
 package com.csh.community.service;
 
 import com.csh.community.dao.CommentInfoMapper;
+import com.csh.community.dao.NotificationMapper;
+import com.csh.community.dao.PublishMapper;
 import com.csh.community.dao.UserMapper;
 import com.csh.community.dto.CommentInfoDTO_ToPage;
 import com.csh.community.pojo.CommentInfo;
+import com.csh.community.pojo.Notification;
+import com.csh.community.pojo.Question;
 import com.csh.community.pojo.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -22,9 +26,55 @@ public class CommentServiceImpl implements  CommentService {
     @Resource
     UserMapper userMapper;
 
+    @Resource
+    PublishMapper publishMapper;
+
+    @Resource
+    NotificationMapper notificationMapper;
+
     @Override
-    public void insertCommentService(CommentInfo commentInfo) {
+    public void insertCommentService(CommentInfo commentInfo, User user) {
 //        throw new RuntimeException(c)
+
+        if(commentInfo.getType()==2)
+        {
+            //通过parentid 找到 receicer
+            CommentInfo CommentFroReceiver =commentInfoMapper.getCommentByParentId(commentInfo.getParentId());
+
+
+            //回复了评论
+            Notification notification = new Notification();
+            notification.setGmtcreate(System.currentTimeMillis());
+            notification.setType(2);
+            notification.setOuterid(commentInfo.getParentId());
+            notification.setReceiver(CommentFroReceiver.getCommentator());
+            notification.setNotifier(commentInfo.getCommentator());
+            //读或未读的状态    0 未读 1已读  ---  可以改成枚举
+            notification.setStatus(0);
+            notification.setNotifiername(user.getName());
+            //回复的content
+            CommentInfo commentInfo1 =  commentInfoMapper.getCommentByParentId(commentInfo.getParentId());
+            notification.setOutertitle(commentInfo1.getContent());
+            notificationMapper.insert(notification);
+
+        }else {
+            //回复了问题
+            CommentInfo CommentFroReceiver =commentInfoMapper.getCommentByParentId(commentInfo.getParentId());
+            System.out.println("HereHereHereHereHereHere"+CommentFroReceiver.toString());
+            Notification notification = new Notification();
+            notification.setGmtcreate(System.currentTimeMillis());
+            notification.setType(1);
+            notification.setOuterid(commentInfo.getParentId());
+            notification.setReceiver(CommentFroReceiver.getCommentator());
+            notification.setNotifier(commentInfo.getCommentator());
+            //读或未读的状态    0 未读 1已读  ---  可以改成枚举
+            notification.setStatus(0);
+            notification.setNotifiername(user.getName());
+            Question question = publishMapper.getQuesById(commentInfo.getParentId());
+            System.out.println("19个11111111111"+question.toString());
+            notification.setOutertitle(question.getTitle());
+            notificationMapper.insert(notification);
+        }
 
 
         commentInfoMapper.insertComment(commentInfo);

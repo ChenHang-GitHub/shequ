@@ -73,8 +73,6 @@ public class PublishController {
         question.setDescription(desc);
         question.setGmtCreate(System.currentTimeMillis());
         publishService.updateQuestionById(question);
-
-
         return "redirect:/";
     }
 

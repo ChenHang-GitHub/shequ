@@ -1,5 +1,6 @@
 package com.csh.community.interceptor;
 
+import com.csh.community.dao.NotificationMapper;
 import com.csh.community.dao.UserMapper;
 import com.csh.community.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class SessionInterceptor implements HandlerInterceptor {
 
     @Resource
     UserMapper userMapper ;
+    @Resource
+    NotificationMapper notificationMapper;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
@@ -40,6 +43,9 @@ public class SessionInterceptor implements HandlerInterceptor {
                     if (user != null) {
                         request.getSession().setAttribute("user", user);
                         System.out.println("user!=null");
+                        int unReadCount =  notificationMapper.countUnReadCount(user.getId());
+                        System.out.println("interceptor  unreadcount "+unReadCount);
+                        request.getSession().setAttribute("unReadCount",unReadCount);
                     }
                     break;
                 }

@@ -70,6 +70,11 @@
                 <li>
                     <a href="/publish">发布</a>
                 </li>
+                <li>
+                    <a href="/personal/replies" th:if="${session.user!=null}">通知
+                        <span class="badge" style="color:crimson;" th:text="${session.unReadCount}">41</span>
+                    </a>
+                </li>
                 <li class="dropdown" th:if="${session.user!=null}">
 
                     <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"

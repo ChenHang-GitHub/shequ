@@ -26,4 +26,15 @@
     <select id="getCommentByIdAndType" resultType="com.csh.community.pojo.CommentInfo">
              select  * from  commentinfo where parentid=#{id} and type =#{type}
     </select>
+
+    <!--CommentInfo getCommentByParentId(Long parentId);-->
+    <select id="getCommentByParentId" resultType="com.csh.community.pojo.CommentInfo">
+              select  * from  commentinfo where id = #{parentid}
+    </select>
+
+    <!--CommentInfo getCommentInfoByNotiId(Long outerid);-->
+    <select id="getCommentInfoByNotiId" resultType="com.csh.community.pojo.CommentInfo">
+              select  * from  commentinfo where id = #{outerid}
+    </select>
+
 </mapper>

@@ -15,4 +15,8 @@ public interface CommentInfoMapper {
     List<CommentInfo> getCommentInfoById(Integer id);
 
     List<CommentInfo> getCommentByIdAndType(@Param("id") int id,@Param("type") int type);
+
+    CommentInfo getCommentByParentId(Long parentId);
+
+    CommentInfo getCommentInfoByNotiId(Long outerid);
 }

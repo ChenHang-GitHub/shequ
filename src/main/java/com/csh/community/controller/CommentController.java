@@ -65,8 +65,12 @@ public class CommentController {
         commentInfo.setLikeCount(0L);
 
         //插入回复的消息
-        commentService.insertCommentService(commentInfo);
+        commentService.insertCommentService(commentInfo,user);
         //让回复数+1
+        /*
+         1:回复了问题
+         2:回复了评论
+        * */
         if(commentInfo.getType()==1)
         {
             questionService.incCommentCount(commentInfoDTOFromPage.getParentId().intValue());

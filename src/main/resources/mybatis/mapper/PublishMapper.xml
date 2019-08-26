@@ -56,6 +56,9 @@
         update  question  q set q.title =#{title},q.description=#{description},q.gmtCreate =#{gmtCreate},q.tag=#{tag} where q.id =  #{id}
     </update>
 
+    <!--CommentInfo getQuesById(Long parentId);-->
 
-
+    <select id="getQuesById" resultType="com.csh.community.pojo.Question">
+        SELECT * FROM question where id = #{parentId}
+    </select>
 </mapper>

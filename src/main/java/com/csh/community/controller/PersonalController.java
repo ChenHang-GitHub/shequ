@@ -1,15 +1,17 @@
 package com.csh.community.controller;
 
+import com.csh.community.dao.NotificationMapper;
 import com.csh.community.dao.UserMapper;
+import com.csh.community.dto.NotificationDTO;
 import com.csh.community.dto.QuestionDTO;
 import com.csh.community.pojo.User;
+import com.csh.community.service.NotificationService;
 import com.csh.community.service.QuestionService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +36,8 @@ public class PersonalController {
     QuestionService questionService;
 
     @Resource
+    NotificationService notificationService;
+    @Resource
     UserMapper userMapper;
 
 //    @GetMapping(value = "/personal")
@@ -43,6 +46,9 @@ public class PersonalController {
 //        model.addAttribute("headingName","我的提问");
 //        return "personal";
 //    }
+
+    @Resource
+    NotificationMapper notificationMapper;
 
     @GetMapping(value = {"/personal/{action}","/personalpage"})
     public String PersonalPage(@PathVariable String action,
@@ -58,7 +64,18 @@ public class PersonalController {
             model.addAttribute("headingName","我的提问");
         }else if(action.equals("replies"))
         {
-            model.addAttribute("headingName","我的回复");
+            model.addAttribute("headingName","我的通知");
+            //添加回复内容   A—》question ;
+
+            User user = (User)request.getSession().getAttribute("user");
+
+            List<NotificationDTO> notificationDTOList = notificationService.getByReceiverId(user.getId());
+
+            model.addAttribute("notifications",notificationDTOList);
+            int unReadCount =  notificationMapper.countUnReadCount(user.getId());
+            System.out.println("unReadCountunReadCountunReadCountunReadCountunReadCount"+unReadCount);
+            model.addAttribute("unReadCount",unReadCount);
+            request.getSession().setAttribute("unReadCount",unReadCount);
         }
 
         //
