@@ -17,6 +17,4 @@ public class QuestionDTO {
     private int likeCount;
     private String tag;
     private User user;
-
-
 }

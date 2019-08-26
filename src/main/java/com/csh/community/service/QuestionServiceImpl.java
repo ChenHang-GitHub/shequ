@@ -7,10 +7,13 @@ import com.csh.community.pojo.Question;
 import com.csh.community.pojo.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
@@ -92,5 +95,24 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void incComment_commentCount(int i) {
         publishMapper.incComment_commentCnt(i);
+    }
+//  相关问题
+    @Override
+    public List<Question> getRelatedList(QuestionDTO questionDTO) {
+        System.out.println("test tag " + questionDTO.getTag());
+        if(StringUtils.isEmpty(questionDTO.getTag()))
+        {
+            System.out.println("tag is empty");
+            return  new ArrayList<Question>();
+        }
+
+        // 对tag 进行处理    SpingBoot|spirng|mvc
+        String[] tags = StringUtils.split(questionDTO.getTag(),",");
+        String regexp = Arrays.stream(tags).collect(Collectors.joining("|"));
+        Question question = new Question();
+        question.setTag(regexp);
+        question.setId(questionDTO.getId());
+        List<Question> questionList = publishMapper.getRelatedQuestion(question);
+        return questionList;
     }
 }

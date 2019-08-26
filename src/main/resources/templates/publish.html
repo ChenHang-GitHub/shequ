@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -15,6 +15,9 @@
     <!--my.css-->
     <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
 
+<!---->
+    <script src="/js/myJs.js"></script>
+
 
 </head>
 <body style="background-color: #efefed">
@@ -26,38 +29,78 @@
     <div class="row">
         <!--9-->
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <h2> <div class="glyphicon glyphicon-plus"></div> 发起</h2>
+            <h2>
+                <div class="glyphicon glyphicon-plus"></div>
+                发起
+            </h2>
             <hr>
+
             <form action="/publish" method="post">
 
-                <input type="hidden" name="_method" value="put" th:if="${updateId!=null}"/>
-                <input type="hidden" name="updateId" th:if="${updateId!=null}" th:value="${updateId}">
+                <input type="hidden" name="_method" value="put" th:if="${updateid!=null}"/>
+                <input type="hidden" name="updateid" th:if="${updateid!=null}" th:value="${updateid}">
 
                 <div class="form-group">
                     <label for="title">*问题标题</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Email" required="true" th:value="${title!=null}?${title}">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="email" required="true"
+                           th:value="${title!=null}?${title}">
                 </div>
                 <div class="form-group">
                     <label for="title">*问题补充</label>
-                    <textarea  class="form-control" name="desc" id="desc" cols="30" rows="20" required="true"  th:text="${desc!=null}?${desc}"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="title">*问题标签</label>
-                    <input type="text" class="form-control" id="tag" name="tag" placeholder="Email" required="true"  th:value="${tag!=null}?${tag}">
+                    <textarea class="form-control" name="desc" id="desc" cols="30" rows="20" required="true"
+                              th:text="${desc!=null}?${desc}"></textarea>
                 </div>
 
-               <div th:if="${error!=null}">
-                   <div class="alert alert-danger" th:text="${error}"></div>
-               </div>
-                <button type="submit" class="btn btn-success btn-publish" th:text="${updateId!=null}?'修改' : '发布'"></button>
+                <!--test-->
+                <div class="form-group">
+                    <label for="tag">添加标签:</label>
+                    <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag"
+                           autocomplete="off"
+                           placeholder="输入标签，以，号分隔"
+                           onclick="showSelectTag()">
+                    <div id="select-tag" class="publish-tag-tab">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" th:each="selectCategory,selectCategoryStat: ${tags}"
+                                th:class="${selectCategoryStat.first ? 'active':''}">
+                                <a th:href="${'#'+selectCategory.categoryName}" aria-controls="home" role="tab"
+                                   data-toggle="tab" th:text="${selectCategory.categoryName}"></a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div role="tabpanel" th:id="${selectCategory.categoryName}"
+                                 th:each="selectCategory: ${tags}"
+                                 th:class="${selectCategoryStat.first ? 'active tab-pane':'tab-pane'}">
+                                <span>
+                                    <span class="label label-info" th:each="selectTag: ${selectCategory.tags}">
+                                    <span class="glyphicon glyphicon-tags" onclick="selectTag(this)"
+                                          th:data-tag="${selectTag}"
+                                          th:text="${' '+selectTag}">
+                                    </span>
+                                </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end t-->
+
+                <div th:if="${error!=null}">
+                    <div class="alert alert-danger" th:text="${error}"></div>
+                </div>
+                <button type="submit" class="btn btn-success btn-publish"
+                        th:text="${updateid!=null}?'修改' : '发布'"></button>
+
             </form>
         </div>
+        <!--9 end-->
+
+
+        <!--3-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-           <h2> * 问题发布指南</h2>
+            <h2> * 问题发布指南</h2>
         </div>
     </div>
 </div>
-
 
 
 </body>

@@ -15,4 +15,10 @@ public class PublishServiceImpl implements PublishService {
     public void createService(Question question) {
         publishMapper.createMapper(question);
     }
+
+    @Override
+    public void updateQuestionById(Question question) {
+
+        publishMapper.update(question);
+    }
 }

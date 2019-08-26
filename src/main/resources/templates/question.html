@@ -28,7 +28,6 @@
 <div class="container-fluid main">
     <div class="row">
         <!--9-->
-
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
 
             <h4>
@@ -47,10 +46,20 @@
 
 
             <!--description-->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${questionDTO.description}">
-            </div>
-
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${questionDTO.description}"></div>
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+            <!--tag-->
+            <div>
+
+                 <span class="label label-info " th:each="tag : ${questionDTO.tag.split(',')}"
+                       style="margin-left: 15px">
+                        <span class="glyphicon glyphicon-tags"></span>
+                        <span class="label label-info" style="color:rebeccapurple" th:text="${tag}"></span>
+               </span>
+            </div>
+            <!--tag end-->
+            <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+
             <!--编辑-->
             <a class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mycolor" th:href="@{/publish/}+${questionDTO.id}"
                th:if="${session.user!=null && questionDTO.creator==session.user.id}">
@@ -75,17 +84,18 @@
                         <span th:text="${commentList.user.name}" class="mycolor"></span>
                     </div>
                     <div th:text="${commentList.content}">回复内容</div>
-                    <span th:text="${#dates.format(commentList.gmtCreate,'yyyy-MM-dd HH:mm')}" class="btn-publish"></span>
+                    <span th:text="${#dates.format(commentList.gmtCreate,'yyyy-MM-dd HH:mm')}"
+                          class="btn-publish"></span>
                     <div class="mycolor">
                         <!--点赞 评论 时间-->
                         <!--<a href="#" class="btn btn-primary" role="button" data-toggle="collapse" aria-expanded="false"-->
-                           <!--aria-controls="collapseExample">-->
-                            <!--<span class="glyphicon glyphicon-thumbs-up"></span>-->
+                        <!--aria-controls="collapseExample">-->
+                        <!--<span class="glyphicon glyphicon-thumbs-up"></span>-->
                         <!--</a>-->
 
                         <!--<a href="#" th:data-id="${commentList.id}" class="btn btn-primary" role="button"-->
-                           <!--data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">-->
-                            <!--<span class="glyphicon glyphicon-comment" style="margin-left: 10px"></span>-->
+                        <!--data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">-->
+                        <!--<span class="glyphicon glyphicon-comment" style="margin-left: 10px"></span>-->
                         <!--</a>-->
                         <!--<button type="button" class="btn btn-success btn-publish" onclick="postComment();">回复</button>-->
 
@@ -102,9 +112,10 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse  sub-comments "
                          th:id="${'comment-'+commentList.id}">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <input type="text" class="form-control" placeholder="说点什么…"  style="margin-top: 20px"
+                            <input type="text" class="form-control" placeholder="说点什么  …" style="margin-top: 20px"
                                    th:id="${'input-'+commentList.id}">
-                            <button type="button" class="btn btn-success pull-right" onclick="comment(this)" style="margin-top: 15px"
+                            <button type="button" class="btn btn-success pull-right" onclick="comment(this)"
+                                    style="margin-top: 15px"
                                     th:data-id="${commentList.id}"><span>评论</span>
                             </button>
 
@@ -158,7 +169,6 @@
                     </div>
 
                     <div class="media-right" style="color: #ac2925">
-                        <!--<a th:href="@{'/question/'+${question.id}}"><h4 class="media-heading" th:text="${question.title}"></h4></a>-->
                         <span th:text="${questionDTO.user.name}"> </span> <br>
 
                         <span class="text-desc">
@@ -175,6 +185,11 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
                 <h4 class="mycolor">相关问题</h4>
+                <ul style="line-height: 28px;font-size: 16px;margin-left: 0;list-style: none;padding-left: 0;">
+                    <li th:each="related:${relatedQuestions}">
+                        <a th:href="@{'/question/'+${related.id}}" th:text="${related.title}"></a>
+                    </li>
+                </ul>
 
             </div>
             <!--下end-->

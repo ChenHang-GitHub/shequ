@@ -13,7 +13,7 @@
     </insert>
 
     <select id="getAllQuestion" resultType="com.csh.community.pojo.Question">
-        SELECT * FROM question
+        SELECT * FROM question q order by q.gmtcreate desc
     </select>
 
     <!--List<Question> getQuestionById(Integer id);-->
@@ -42,5 +42,20 @@
     <update id="incComment_commentCnt">
         update  commentinfo c set c.commentcount=(c.commentcount+1) where c.id=#{id}
     </update>
+
+    <!--List<Question> getRelatedQuestion(Question question);-->
+
+    <select id="getRelatedQuestion" resultType="com.csh.community.pojo.Question">
+        SELECT * FROM question  where REGEXP_LIKE(TAG,#{tag},'i')  and id !=#{id}
+    </select>
+
+
+    <!--void update(Question question);-->
+
+    <update id="update">
+        update  question  q set q.title =#{title},q.description=#{description},q.gmtCreate =#{gmtCreate},q.tag=#{tag} where q.id =  #{id}
+    </update>
+
+
 
 </mapper>

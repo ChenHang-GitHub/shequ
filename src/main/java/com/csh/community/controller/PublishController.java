@@ -1,10 +1,12 @@
 package com.csh.community.controller;
 
+import com.csh.community.cache.TagCache;
 import com.csh.community.dao.PublishMapper;
 import com.csh.community.dao.UserMapper;
 import com.csh.community.pojo.Question;
 import com.csh.community.pojo.User;
 import com.csh.community.service.PublishService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +34,9 @@ public class PublishController {
     UserMapper userMapper;
 
     @GetMapping("/publish")
-    public String publish() {
+    public String publish(Model model) {
+        model.addAttribute("tags", TagCache.get());
+        System.out.println(TagCache.get());
         return "publish";
     }
 
@@ -45,24 +49,35 @@ public class PublishController {
         model.addAttribute("desc", question.getDescription());
         model.addAttribute("tag", question.getTag());
         //提供需要修改的id
-        model.addAttribute("updateId",question.getId());
+        model.addAttribute("updateid",question.getId());
+        model.addAttribute("tags", TagCache.get());
 
+        System.out.println(TagCache.get()+"11111111111111111111111111111111111");
         return "publish";
     }
 
 
     //更新
     @PutMapping(value = "/publish")
-    public  String  updateQuestion(@Param("updateId") Integer updateId,
+    public  String  updateQuestion(@Param("updateId") Integer updateid,
                                    @Param("title") String title,
                                    @Param("desc") String desc,
-                                   @Param("tag") String tag)
+                                   @Param("tag") String tag,Model model)
     {
-        logger.debug("testPutMapping"+updateId+title+tag+desc);
+        logger.debug("testPutMapping"+updateid+title+tag+desc);
 //        publishService.
+        Question question = new Question();
+        question.setId(updateid);
+        question.setTitle(title);
+        question.setTag(tag);
+        question.setDescription(desc);
+        question.setGmtCreate(System.currentTimeMillis());
+        publishService.updateQuestionById(question);
+
 
         return "redirect:/";
     }
+
 
     @PostMapping("/publish")
     public String doPublish(@Param("title") String title,
@@ -71,11 +86,11 @@ public class PublishController {
                             HttpServletRequest request,
                             Model model) {
 
-
+        model.addAttribute("tags", TagCache.get());
         model.addAttribute("title", title);
         model.addAttribute("desc", desc);
         model.addAttribute("tag", tag);
-
+        model.addAttribute("tags", TagCache.get());
         User user = (User) request.getSession().getAttribute("user");
 //        Cookie[] cookies = request.getCookies();
 //        if (cookies != null) {
@@ -98,6 +113,12 @@ public class PublishController {
             return "publish";
         }
 
+
+        String invalid = TagCache.filterInvalid(tag);
+        if (StringUtils.isNotBlank(invalid)) {
+            model.addAttribute("error", "输入非法标签:" + invalid);
+            return "publish";
+        }
         Question question = new Question();
         question.setTitle(title);
         question.setDescription(desc);

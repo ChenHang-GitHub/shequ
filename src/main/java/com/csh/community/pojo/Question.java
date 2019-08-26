@@ -14,6 +14,4 @@ public class Question {
     private int viewCount;
     private int likeCount;
     private String tag;
-
-
 }

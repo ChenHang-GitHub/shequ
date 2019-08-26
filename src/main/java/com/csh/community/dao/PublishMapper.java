@@ -24,4 +24,8 @@ public interface PublishMapper {
     void incCommentCnt(Integer id);
 
     void incComment_commentCnt(int i);
+
+    List<Question> getRelatedQuestion(Question question);
+
+    void update(Question question);
 }
