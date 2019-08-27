@@ -265,7 +265,7 @@
       <path value="$PROJECT_DIR$/src/main/resources/static/js/lib/codemirror/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="385" />
     <option name="y" value="11" />
     <option name="width" value="1536" />
