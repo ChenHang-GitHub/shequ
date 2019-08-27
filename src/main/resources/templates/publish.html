@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script src="/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
     <link rel="stylesheet" href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}">
-    <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
+    <script src="/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
             type="application/javascript"></script>
     <script src="/js/bootstrap.js"></script>
 
@@ -17,6 +17,15 @@
 
 <!---->
     <script src="/js/myJs.js"></script>
+
+    <link rel="stylesheet" href="/css/editormd.min.css">
+    <script src="/js/editormd.min.js"></script>
+    <script src="/js/image-dialog.js"></script>
+    <script src="/js/editormd.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/image-dialog.js"></script>
+    <link rel="stylesheet" href="/css/editormd.min.css">
+    <!--pic-->
 
 
 </head>
@@ -45,11 +54,28 @@
                     <input type="text" class="form-control" id="title" name="title" placeholder="email" required="true"
                            th:value="${title!=null}?${title}">
                 </div>
-                <div class="form-group">
-                    <label for="title">*问题补充</label>
+                <div class="form-group" id="test-editor">
+                    <!--<label for="title">*问题补充</label>-->
                     <textarea class="form-control" name="desc" id="desc" cols="30" rows="20" required="true"
-                              th:text="${desc!=null}?${desc}"></textarea>
+                              th:text="${desc!=null}?${desc}" style="display: none"></textarea>
                 </div>
+                <!--js-->
+                <script type="text/javascript">
+                    $(function() {
+                        var editor = editormd("test-editor", {
+                            width  : "100%",
+                            height : 450,
+                            path   : "/js/lib/",
+                            delay: true,
+                            watch:false,
+                            placeholder :"Enjoy Markdown! coding now...",
+                            imageUpload          : true,          // Enable/disable upload
+                            imageFormats         : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                            imageUploadURL       : "/pic/upload",             // Upload url
+                        });
+                    });
+                </script>
+                <!---->
 
                 <!--test-->
                 <div class="form-group">

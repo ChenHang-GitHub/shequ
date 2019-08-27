@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -24,7 +25,9 @@ public class NotificationController {
     CommentInfoMapper commentInfoMapper;
 
     @GetMapping(value = "/notification/{id}")
-    public String changeNotification(@PathVariable Integer id, HttpServletRequest request, Model model) {
+    public String changeNotification(@PathVariable Integer id, HttpServletRequest request,
+                                     Model model
+                                 ) {
 
         User user = (User) request.getSession().getAttribute("user");
 
@@ -33,6 +36,7 @@ public class NotificationController {
             return "redirect:/";
         }
         System.out.println("= \"/notification/{id}\")" + id);
+
         Notification notification = notificationMapper.getNotiById(id);
         if (notification != null) {
             notification.setStatus(1);

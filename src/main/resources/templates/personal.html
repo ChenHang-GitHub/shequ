@@ -13,6 +13,9 @@
     <link rel="icon" type="image/x-icon" href="../static/image/favicon.ico">
     <!--my.css-->
     <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
+    <script src="../static/js/editormd.min.js" th:href="@{/js/editormd.min.js}"></script>
+    <link rel="stylesheet" href="../static/css/editormd.min.css" th:href="@{/css/editormd.min.css}">
+
 
 </head>
 <body>
@@ -113,16 +116,16 @@
                 <ul class="pagination">
 
                     <li>
-                        <a th:href="@{/personal/questions(pageNum=1)}" aria-label="Previous">
+                        <a th:href="@{/personal/replies(pageNum=1)}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
 
-                    <li th:each="page:${midpage}"><a th:href="@{/personal/questions(pageNum=${page})}"
+                    <li th:each="page:${midpage}"><a th:href="@{/personal/replies(pageNum=${page})}"
                                                      th:text="${page}">1</a></li>
 
                     <li>
-                        <a th:href="@{/personal/questions(pageNum=${pages})}" aria-label="Next">
+                        <a th:href="@{/personal/replies(pageNum=${pages})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>

@@ -8,7 +8,7 @@
     <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
     <link rel="stylesheet" href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}">
-    <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
+    <script src="/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
             type="application/javascript"></script>
     <script src="/js/bootstrap.js"></script>
 
@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
     <script src="/js/myJs.js"></script>
     <script src="../static/js/moment.js" th:src="@{/js/moment.js}"></script>
+    <link rel="stylesheet" href="/css/editormd.preview.min.css">
+    <script src="/js/editormd.min.js"></script>
+    <script src="/js/lib/marked.min.js"></script>
+    <script src="/js/lib/prettify.min.js"></script>
 
 
 </head>
@@ -46,7 +50,24 @@
 
 
             <!--description-->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${questionDTO.description}"></div>
+            <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" th:text="${questionDTO.description}"></div>-->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="test-markdown-view">
+                <!-- Server-side output Markdown text -->
+                <textarea style="display:none;" th:text="${questionDTO.description}"></textarea>
+            </div>
+
+            <!--js-->
+            <script type="text/javascript">
+                $(function() {
+                    var testView = editormd.markdownToHTML("test-markdown-view", {
+                        // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
+                        // htmlDecode : true,  // Enable / disable HTML tag encode.
+                        // htmlDecode : "style,script,iframe",  // Note: If enabled, you should filter some dangerous HTML tags for website security.
+                    });
+                });
+            </script>
+            <!---->
+
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
             <!--tag-->
             <div>
