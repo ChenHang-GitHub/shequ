@@ -8,13 +8,17 @@
     <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
     <link rel="stylesheet" href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}">
-    <script src="../static/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
-            type="application/javascript"></script>
     <script src="js/bootstrap.js"></script>
 
     <link rel="icon" type="image/x-icon" href="../static/image/favicon.ico">
     <!--my.css-->
     <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
+    <script src="../static/js/bootstrap.min.js"></script>
+
+    <!---->
+
+
+
 
 </head>
 <body>
@@ -78,15 +82,14 @@
                 <ul class="pagination">
 
                     <li>
-                        <a th:href="@{/(pageNum=1)}" aria-label="Previous">
+                        <a th:href="@{/(pageNum=1,search=${search})}" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
 
-                    <li th:each="page:${midpage}"><a th:href="@{/(pageNum=${page})}" th:text="${page}">1</a></li>
-
+                    <li th:each="page:${midpage}"><a th:href="@{/(pageNum=${page},search=${search})}" th:text="${page}">1</a></li>
                     <li>
-                        <a th:href="@{/(pageNum=${pages})}" aria-label="Next">
+                        <a th:href="@{/(pageNum=${pages},search=${search})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -104,5 +107,6 @@
     </div>
 </div>
 
+<div th:insert="~{foot :: foot}"></div>
 </body>
 </html>

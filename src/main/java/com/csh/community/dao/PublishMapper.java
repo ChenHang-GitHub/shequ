@@ -30,4 +30,6 @@ public interface PublishMapper {
     void update(Question question);
 
     Question getQuesById(Long parentId);
+
+    List<Question> getQuestionBySearch(String regexp);
 }

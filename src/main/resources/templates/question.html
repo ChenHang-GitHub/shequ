@@ -5,12 +5,12 @@
     <title>Title</title>
 
 
-    <script src="../static/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script src="/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
     <link rel="stylesheet" href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}">
     <script src="/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
-            type="application/javascript"></script>
-    <script src="/js/bootstrap.js"></script>
+         ></script>
+    <script src="js/bootstrap.js"></script>
 
     <link rel="icon" type="image/x-icon" href="../static/image/favicon.ico">
     <!--my.css-->
@@ -21,6 +21,9 @@
     <script src="/js/editormd.min.js"></script>
     <script src="/js/lib/marked.min.js"></script>
     <script src="/js/lib/prettify.min.js"></script>
+
+
+
 
 
 </head>
@@ -222,6 +225,6 @@
 
 </div>
 
-
+<div th:insert="~{foot :: foot}"></div>
 </body>
 </html>

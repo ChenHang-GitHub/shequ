@@ -115,4 +115,25 @@ public class QuestionServiceImpl implements QuestionService {
         List<Question> questionList = publishMapper.getRelatedQuestion(question);
         return questionList;
     }
+
+    @Override
+    public List<QuestionDTO> getListBySearch(String search) {
+        String[] tags = StringUtils.split(search," ");
+        String regexp = Arrays.stream(tags).collect(Collectors.joining("|"));
+
+        List<QuestionDTO> questionDTOList = new ArrayList<>();
+        List<Question> questions = new ArrayList<>();
+        // id = #creator
+        questions = publishMapper.getQuestionBySearch(regexp);
+        for (Question question : questions
+                ) {
+            User user = userMapper.findById(question.getCreator());
+            QuestionDTO questionDTO = new QuestionDTO();
+            //copy
+            BeanUtils.copyProperties(question, questionDTO);
+            questionDTO.setUser(user);
+            questionDTOList.add(questionDTO);
+        }
+        return questionDTOList;
+    }
 }

@@ -20,4 +20,6 @@ public interface QuestionService {
     void incComment_commentCount(int i);
 
     List<Question> getRelatedList(QuestionDTO questionDTO);
+
+    List<QuestionDTO> getListBySearch(String search);
 }

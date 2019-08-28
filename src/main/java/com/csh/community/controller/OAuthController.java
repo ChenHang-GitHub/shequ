@@ -7,14 +7,11 @@ import com.csh.community.pojo.User;
 import com.csh.community.provider.GitHubPro;
 import com.csh.community.provider.GitHubUser;
 import com.csh.community.service.UserService;
-import com.github.pagehelper.PageHelper;
-import org.apache.ibatis.annotations.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -44,7 +41,7 @@ public class OAuthController {
     @Resource
     UserService userService;
 
-    Logger logger =  LoggerFactory.getLogger(testController.class);
+    Logger logger =  LoggerFactory.getLogger(IndexController.class);
     @GetMapping(value = "callback")
     public String callBack(@RequestParam(name="code") String code,
                            @RequestParam(name = "state")String state,

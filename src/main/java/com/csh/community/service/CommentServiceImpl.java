@@ -36,6 +36,8 @@ public class CommentServiceImpl implements  CommentService {
     public void insertCommentService(CommentInfo commentInfo, User user) {
 //        throw new RuntimeException(c)
 
+
+
         if(commentInfo.getType()==2)
         {
             //通过parentid 找到 receicer
@@ -59,13 +61,13 @@ public class CommentServiceImpl implements  CommentService {
 
         }else {
             //回复了问题
-            CommentInfo CommentFroReceiver =commentInfoMapper.getCommentByParentId(commentInfo.getParentId());
-            System.out.println("HereHereHereHereHereHere"+CommentFroReceiver.toString());
+            Question questionReceiver =publishMapper.getQuesById(commentInfo.getParentId());
+//            System.out.println("HereHereHereHereHereHere"+CommentFroReceiver.toString());
             Notification notification = new Notification();
             notification.setGmtcreate(System.currentTimeMillis());
             notification.setType(1);
             notification.setOuterid(commentInfo.getParentId());
-            notification.setReceiver(CommentFroReceiver.getCommentator());
+            notification.setReceiver(questionReceiver.getCreator());
             notification.setNotifier(commentInfo.getCommentator());
             //读或未读的状态    0 未读 1已读  ---  可以改成枚举
             notification.setStatus(0);
@@ -76,9 +78,7 @@ public class CommentServiceImpl implements  CommentService {
             notificationMapper.insert(notification);
         }
 
-
         commentInfoMapper.insertComment(commentInfo);
-
     }
 
     @Override

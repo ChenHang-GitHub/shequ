@@ -61,4 +61,12 @@
     <select id="getQuesById" resultType="com.csh.community.pojo.Question">
         SELECT * FROM question where id = #{parentId}
     </select>
+
+    <!--List<Question> getQuestionBySearch(String regexp);-->
+
+    <select id="getQuestionBySearch" resultType="com.csh.community.pojo.Question">
+        SELECT * FROM question  where REGEXP_LIKE(title,#{regexp},'i') order by gmtcreate desc
+    </select>
+
+
 </mapper>

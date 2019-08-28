@@ -67,7 +67,7 @@ public class PersonalController {
             //每次登入首页的时候 查询出首页信息
             List<QuestionDTO> questionDTOList =  new ArrayList<>();
             //pagehelper
-            Page<Object> pageHelper = PageHelper.startPage(pageNum, 3);
+            Page<Object> pageHelper = PageHelper.startPage(pageNum, 5);
             questionDTOList= questionService.getSelfList(user.getId());
             logger.debug("questionDTOList????"+questionDTOList.toString());
             int pages = pageHelper.getPages();
