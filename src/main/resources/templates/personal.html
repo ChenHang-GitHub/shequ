@@ -35,7 +35,17 @@
             <hr/>
 
             <div class="media" th:each="question:${questionDTO}">
+                <!--th:attr="del_uri=@{/emp/}+${emp.id}"-->
 
+<!--DeleteMapping-->
+                <form action="/personal/" method="post">
+                     <div style="float: right;color: red">
+                        <span class="glyphicon glyphicon-trash"></span>
+                        <button  type="submit" > 删除</button>
+                    </div>
+                    <input type="hidden" name="_method" value="delete" />
+                    <input type="hidden" name="deleteId" th:value="${question.id}" />
+                </form>
                 <div class="media-left">
 
                     <a>
@@ -45,8 +55,9 @@
                 </div>
 
                 <div class="media-right" style="color: #ac2925">
-                    <a th:href="@{'/question/'+${question.id}}"><h4 class="media-heading"
-                                                                    th:text="${question.title}"></h4></a>
+                    <a th:href="@{'/question/'+${question.id}}">
+                        <h4 class="media-heading" th:text="${question.title}"></h4>
+                    </a>
                     <span th:text="${question.tag}"> </span> <br>
 
                     <span class="text-desc">
@@ -54,10 +65,13 @@
                         <span th:text="${question.viewCount}"></span><span>次浏览• </span>
                         <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}">1 小时前</span>
                     </span>
+
                 </div>
+
 
                 <hr/>
             </div>
+
             <!--分页开始-->
             <nav aria-label="Page navigation" style="float: right">
                 <ul class="pagination">

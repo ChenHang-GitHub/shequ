@@ -62,7 +62,6 @@ public class CommentServiceImpl implements  CommentService {
         }else {
             //回复了问题
             Question questionReceiver =publishMapper.getQuesById(commentInfo.getParentId());
-//            System.out.println("HereHereHereHereHereHere"+CommentFroReceiver.toString());
             Notification notification = new Notification();
             notification.setGmtcreate(System.currentTimeMillis());
             notification.setType(1);
@@ -73,7 +72,6 @@ public class CommentServiceImpl implements  CommentService {
             notification.setStatus(0);
             notification.setNotifiername(user.getName());
             Question question = publishMapper.getQuesById(commentInfo.getParentId());
-            System.out.println("19个11111111111"+question.toString());
             notification.setOutertitle(question.getTitle());
             notificationMapper.insert(notification);
         }
@@ -85,7 +83,6 @@ public class CommentServiceImpl implements  CommentService {
     public List<CommentInfoDTO_ToPage> getCommentInfoDTOList(Integer id) {
 
         List<CommentInfo> commentInfos = commentInfoMapper.getCommentInfoById(id);
-        System.out.println(commentInfos.toString() +"test commentinfos");
         List<CommentInfoDTO_ToPage> commentInfoDTO_toPages = new ArrayList<>();
         for (CommentInfo commentInfo:commentInfos
              ) {
@@ -95,7 +92,6 @@ public class CommentServiceImpl implements  CommentService {
             commentInfoDTO_toPage.setUser(u);
             commentInfoDTO_toPages.add(commentInfoDTO_toPage);
         }
-        System.out.println(commentInfoDTO_toPages.toString());
         return commentInfoDTO_toPages;
     }
 
@@ -112,7 +108,6 @@ public class CommentServiceImpl implements  CommentService {
             commentInfoDTO_toPages.add(commentInfoDTO_toPage);
         }
 
-        System.out.println("test 2ji ::" +commentInfoDTO_toPages.toString());
         return commentInfoDTO_toPages;
     }
 }

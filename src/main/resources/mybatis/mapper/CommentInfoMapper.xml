@@ -37,4 +37,14 @@
               select  * from  commentinfo where id = #{outerid}
     </select>
 
+    <!--void incQuestionLikeCountById(Integer questionId);-->
+     <update id="incQuestionLikeCountById" >
+         update question  set likecount = likecount+1 where  id = #{questionId}
+     </update>
+    <!--void incCommentLikeCountById(Long parentId);-->
+
+    <update id="incCommentLikeCountById">
+        update  commentInfo set likecount=likecount+1 where  id=#{parentId}
+    </update>
+
 </mapper>

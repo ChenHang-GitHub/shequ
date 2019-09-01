@@ -18,18 +18,15 @@
     <!---->
 
 
-
-
 </head>
 <body>
 
-<script  type="application/javascript">
-    window.onload= function () {
+<script type="application/javascript">
+    window.onload = function () {
         var bool = window.localStorage.getItem("boolean");
-        if(bool=="1")
-        {
+        if (bool == "1") {
             alert("登录成功");
-            window.location.href="about:blank";
+            window.location.href = "about:blank";
             window.localStorage.removeItem("boolean")
             window.close();
         }
@@ -41,8 +38,6 @@
 <div th:replace="head::headbar"></div>
 
 
-
-
 <!--流式布局-->
 <div class="container-fluid main">
     <div class="row">
@@ -50,7 +45,7 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
 
             <h2>
-                <div class="glyphicon glyphicon-th-list"></div>
+                <div class="glyphicon glyphicon-menu-hamburger"></div>
                 <span>发现</span>
             </h2>
             <hr/>
@@ -58,26 +53,44 @@
             <div class="media" th:each="question:${questionDTO}">
 
                 <div class="media-left">
-                        <a>
-                            <img th:src="${question.user.avatarUrl}" alt="头像" class="img-circle"
-                                 width="64px" height="64px"/>
-                        </a>
+                    <a>
+                        <img th:src="${question.user.avatarUrl}" alt="头像" class="img-circle"
+                             width="64px" height="64px"/>
+                    </a>
                 </div>
-
                 <div class="media-right" style="color: #ac2925">
-                    <a th:href="@{'/question/'+${question.id}}"><h4 class="media-heading" th:text="${question.title}"></h4></a>
-                    <span th:text="${question.tag}"> </span> <br>
+                    <a th:href="@{'/question/'+${question.id}}">
+                        <h4 class="media-heading" style="font-family: cursive;color: darkblue"
+                            th:text="${question.title}"></h4>
+                    </a>
+
+
+                    <!-- tag    -->
+                    <span th:if="${question.tag!=null}">
+                            <span class="" th:each="tag : ${question.tag.split(',')}"
+                                  style="margin-left: 2px;margin-bottom: 3px">
+                                <span class="glyphicon glyphicon-tags"></span>
+                                <span style="color:brown; font-size: 14px; " th:text="${tag}"></span>
+                            </span>
+                    </span>
+                    <br>
+
+                    <!---->
 
                     <span class="text-desc">
                         <span th:text="${question.commentCount}"></span><span>个回复• </span>
                         <span th:text="${question.viewCount}"></span><span>次浏览• </span>
                         <span th:text="${#dates.format(question.gmtCreate,'yyyy-MM-dd HH:mm')}">1 小时前</span>
+                            <span style="margin-left: 8px" class="glyphicon glyphicon-thumbs-up icon"></span>
+
+                      <span style="margin-left: 15px" th:text="${question.likeCount}"></span><span>个点赞数</span>
+
                     </span>
                 </div>
 
                 <hr/>
             </div>
-<!--分页开始-->
+            <!--分页开始-->
             <nav aria-label="Page navigation" style="float: right">
                 <ul class="pagination">
 
@@ -87,7 +100,8 @@
                         </a>
                     </li>
 
-                    <li th:each="page:${midpage}"><a th:href="@{/(pageNum=${page},search=${search})}" th:text="${page}">1</a></li>
+                    <li th:each="page:${midpage}"><a th:href="@{/(pageNum=${page},search=${search})}" th:text="${page}">1</a>
+                    </li>
                     <li>
                         <a th:href="@{/(pageNum=${pages},search=${search})}" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
@@ -96,17 +110,69 @@
 
                 </ul>
             </nav>
-<!--分页结束-->
+            <!--分页结束-->
 
         </div>
 
-
+        <!--下3-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h2>最近热门</h2>
-        </div>
+
+            <h3 style="color:brown; margin-bottom: 5px ;font-family: cursive">GitHub账号登录该社区</h3>
+            <img src="/image/10210844379d576ce3fc1f54f6849b6e.png" height="253" width="293"/>
+            <h3 style="color:brown; margin-bottom: 5px ;font-family: cursive">热门提问：</h3>
+
+            <ul style="font-size: 13px;margin-left: 0;list-style: none;padding-left: 0;">
+                <li th:each="hotQues:${hotQuestionList}">
+                    <span class="glyphicon glyphicon-hand-right" style="margin-right: 10px"></span>
+                    <a style="font-family: -webkit-pictograph;color: blue" th:href="@{'/question/'+${hotQues.id}}"
+                       th:text="${hotQues.title}">
+                    </a>
+
+                    <div>
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                        <span th:text="${hotQues.viewCount}"></span>
+                        <span>浏览数</span>
+                    </div>
+
+                    <hr>
+
+                </li>
+            </ul>
+
+            <h3 style="color:brown; margin-bottom: 5px ;font-family: cursive">热门标签：</h3>
+            <ul style="line-height: 15px;font-size: 16px;margin-left: 0;list-style: none;padding-left: 0;">
+                     <span style="margin-left: 2px;margin-bottom: 3px">
+                        <span class="glyphicon glyphicon-tags"></span>
+                        <span style="color:brown; font-size: 14px; " th:text="Java"></span>
+                    </span>
+                <span style="margin-left: 2px;margin-bottom: 3px">
+                        <span class="glyphicon glyphicon-tags"></span>
+                        <span style="color:brown; font-size: 14px; " th:text="SpringBoot"></span>
+                    </span>
+                <span style="margin-left: 2px;margin-bottom: 3px">
+                        <span class="glyphicon glyphicon-tags"></span>
+                        <span style="color:brown; font-size: 14px; " th:text="JavaScript"></span>
+                    </span>
+                <span style="margin-left: 2px;margin-bottom: 3px">
+                        <span class="glyphicon glyphicon-tags"></span>
+                        <span style="color:brown; font-size: 14px; " th:text="CSS"></span>
+                    </span>
+                <span style="margin-left: 2px;margin-bottom: 3px">
+                        <span class="glyphicon glyphicon-tags"></span>
+                        <span style="color:brown; font-size: 14px; " th:text="Python"></span>
+                    </span>
+                <span style="margin-left: 2px;margin-bottom: 3px">
+                        <span class="glyphicon glyphicon-tags"></span>
+                        <span style="color:brown; font-size: 14px; " th:text="Coffeescript"></span>
+                    </span>
+            </ul>
+
+
+            <img src="/image/alicloud.jpg" height="200" width="400"/></div>
+        <!--下3end-->
+
     </div>
 </div>
-
 <div th:insert="~{foot :: foot}"></div>
 </body>
 </html>

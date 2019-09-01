@@ -12,4 +12,5 @@ public interface CommentService {
     List<CommentInfoDTO_ToPage> getCommentInfoDTOList(Integer id);
 
     List<CommentInfoDTO_ToPage> getTypeTwoCommentList(int id, int type);
+
 }

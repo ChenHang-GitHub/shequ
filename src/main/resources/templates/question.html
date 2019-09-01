@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
 
-
-    <script src="/js/jquery-3.4.1.min.js" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script src="../static/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}"/>
     <link rel="stylesheet" href="../static/css/bootstrap-theme.css" th:href="@{/css/bootstrap-theme.css}">
     <script src="/js/bootstrap.min.js" th:href="@{/js/bootstrap.min.js}"
-         ></script>
+    ></script>
     <script src="js/bootstrap.js"></script>
 
     <link rel="icon" type="image/x-icon" href="../static/image/favicon.ico">
@@ -21,9 +21,6 @@
     <script src="/js/editormd.min.js"></script>
     <script src="/js/lib/marked.min.js"></script>
     <script src="/js/lib/prettify.min.js"></script>
-
-
-
 
 
 </head>
@@ -45,8 +42,13 @@
             <br/>
             <span class="text-desc">
                         作者：<span th:text="${questionDTO.user.name}"></span>
-                        |阅读数：<span th:text="${questionDTO.viewCount}"></span><span>次浏览• </span>
-                        |发布时间：<span th:text="${#dates.format(questionDTO.gmtCreate,'yyyy-MM-dd HH:mm')}">1 小时前</span>
+                      |&nbsp;      &nbsp;阅读数：<span th:text="${questionDTO.viewCount}"></span><span>&nbsp;    次浏览</span>
+                      | &nbsp;     &nbsp;发布时间：<span
+                    th:text="${#dates.format(questionDTO.gmtCreate,'yyyy-MM-dd HH:mm')}">1 小时前</span>
+                <!--点赞-->
+                       给个赞 &nbsp; <button style="color: blue;border: none;background-color: aqua" type="button"
+                                          onclick="onThumbsUp()"><span
+                    class="glyphicon glyphicon-thumbs-up icon"></span></button>
                     <br/>
                 <span></span>
             </span>
@@ -61,7 +63,7 @@
 
             <!--js-->
             <script type="text/javascript">
-                $(function() {
+                $(function () {
                     var testView = editormd.markdownToHTML("test-markdown-view", {
                         // markdown : "[TOC]\n### Hello world!\n## Heading 2", // Also, you can dynamic set Markdown text
                         // htmlDecode : true,  // Enable / disable HTML tag encode.
@@ -75,10 +77,10 @@
             <!--tag-->
             <div>
 
-                 <span class="label label-info " th:each="tag : ${questionDTO.tag.split(',')}"
+                 <span class="" th:each="tag : ${questionDTO.tag.split(',')}"
                        style="margin-left: 15px">
                         <span class="glyphicon glyphicon-tags"></span>
-                        <span class="label label-info" style="color:rebeccapurple" th:text="${tag}"></span>
+                        <span class="" style="color:brown; font-size: 14px" th:text="${tag}"></span>
                </span>
             </div>
             <!--tag end-->
@@ -123,7 +125,8 @@
                         <!--</a>-->
                         <!--<button type="button" class="btn btn-success btn-publish" onclick="postComment();">回复</button>-->
 
-                        <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                        <span th:data-id="${commentList.id}" class="glyphicon glyphicon-thumbs-up icon" onclick="onCommentThumbsUp(this)"></span>
+                        <span th:text="${commentList.likeCount}"></span>
                         <span th:data-id="${commentList.id}"
                               onclick="collapseComments(this)" class="comment-icon">
                                     <span class="glyphicon glyphicon-comment"></span>
@@ -181,7 +184,7 @@
 
             <!--上-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h4 class="mycolor">发起人</h4>
+                <h4 style="color: brown;font-family: cursive">发起人：</h4>
 
                 <div class="media">
 
@@ -208,10 +211,16 @@
             <!--下-->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                <h4 class="mycolor">相关问题</h4>
+                <h4 style="color:brown; margin-bottom: 5px ;font-family: cursive">相关问题：</h4>
                 <ul style="line-height: 28px;font-size: 16px;margin-left: 0;list-style: none;padding-left: 0;">
                     <li th:each="related:${relatedQuestions}">
-                        <a th:href="@{'/question/'+${related.id}}" th:text="${related.title}"></a>
+                        <span class="glyphicon glyphicon-hand-right" style="margin-right: 10px"></span>
+                        <a
+                            style="font-family: -webkit-pictograph;color: blue" th:href="@{'/question/'+${related.id}}"
+                            th:text="${related.title}">
+
+                        </a>
+                        <hr>
                     </li>
                 </ul>
 

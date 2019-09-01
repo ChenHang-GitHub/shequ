@@ -19,4 +19,8 @@ public interface CommentInfoMapper {
     CommentInfo getCommentByParentId(Long parentId);
 
     CommentInfo getCommentInfoByNotiId(Long outerid);
+
+    void incQuestionLikeCountById(Integer questionId);
+
+    void incCommentLikeCountById(Long parentId);
 }

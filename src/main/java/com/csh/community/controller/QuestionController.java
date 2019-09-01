@@ -32,7 +32,6 @@ public class QuestionController {
         QuestionDTO questionDTO = questionService.getQuestionById(id);
 //        获取相关问题的QuestionDTO
         List<Question> relatedQuestionList = questionService.getRelatedList(questionDTO);
-        logger.info(relatedQuestionList.toString()+"--------------------------------------------");
 
 
         //每次访问问题页面 都让浏览数+1 当 访问登录用户自己的页面不+1；

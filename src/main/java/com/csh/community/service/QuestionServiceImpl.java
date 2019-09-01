@@ -6,6 +6,8 @@ import com.csh.community.dto.QuestionDTO;
 import com.csh.community.pojo.Question;
 import com.csh.community.pojo.User;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+
 public class QuestionServiceImpl implements QuestionService {
 
     @Resource
@@ -24,12 +27,12 @@ public class QuestionServiceImpl implements QuestionService {
     PublishMapper publishMapper;
 
 
+
     @Override
     public List<QuestionDTO> getList() {
         List<QuestionDTO> questionDTOList = new ArrayList<>();
         List<Question> questions = new ArrayList<>();
         questions = publishMapper.getAllQuestion();
-        System.out.println(questions.toString()+"222222222222222222222222222222");
         for (Question question : questions
                 ) {
             User user = userMapper.findById(question.getCreator());
@@ -39,7 +42,6 @@ public class QuestionServiceImpl implements QuestionService {
             BeanUtils.copyProperties(question, questionDTO);
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
-            System.out.println(questionDTO);
         }
         return questionDTOList;
     }
@@ -69,13 +71,11 @@ public class QuestionServiceImpl implements QuestionService {
 
         Question question = publishMapper.getPersonalQuestion(id);
 
-        System.out.println(question.toString());
         BeanUtils.copyProperties(question, questionDTO);
 
         User user = userMapper.findById(question.getCreator());
 
         questionDTO.setUser(user);
-        System.out.println(questionDTO + "测试DTO");
         return questionDTO;
     }
 

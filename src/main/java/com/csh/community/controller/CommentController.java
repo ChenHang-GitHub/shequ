@@ -3,6 +3,7 @@ package com.csh.community.controller;
 import com.csh.community.dao.CommentInfoMapper;
 import com.csh.community.dto.CommentInfoDTO_FromPage;
 import com.csh.community.dto.CommentInfoDTO_ToPage;
+import com.csh.community.dto.LikeCountDTO;
 import com.csh.community.dto.MessageDTO;
 import com.csh.community.exception.CustomizeErrorCode;
 import com.csh.community.pojo.CommentInfo;
@@ -42,7 +43,6 @@ public class CommentController {
         //判断用户登入   (异常处理)
         if(user==null)
         {
-            System.out.println("comment :user is null");
 //            return MessageDTO.errorof(1000,"未登录");
             return MessageDTO.errorof(CustomizeErrorCode.USER_NOT_LOGIN);
         }
@@ -52,7 +52,6 @@ public class CommentController {
             return MessageDTO.errorof(CustomizeErrorCode.CONTENT_IS_NULL);
         }
 
-        System.out.println("Test JSON"+ commentInfoDTOFromPage.toString());
         CommentInfo commentInfo =new CommentInfo();
 
         commentInfo.setParentId(commentInfoDTOFromPage.getParentId());
@@ -76,16 +75,11 @@ public class CommentController {
             questionService.incCommentCount(commentInfoDTOFromPage.getParentId().intValue());
         }else if(commentInfo.getType()==2)
         {
-            System.out.println("type=============================22222222");
             questionService.incComment_commentCount(commentInfoDTOFromPage.getParentId().intValue());
         }
 
         return  commentInfo;
     }
-
-
-
-
 
 /*
 * 获取二级评论*/
@@ -96,5 +90,31 @@ public class CommentController {
         List<CommentInfoDTO_ToPage> commentInfoDTO_toPages = commentService.getTypeTwoCommentList(id,type);
         return commentInfoDTO_toPages;
     }
+
+
+    /*
+    * 点赞实现*/
+    @ResponseBody
+    @PostMapping(value = "/commentGood")
+    public  Object IncLikeCount(@RequestBody LikeCountDTO likeCountDTO)
+    {
+        if(likeCountDTO.getType()==1)
+        {
+            //点赞了问题
+            commentInfoMapper.incQuestionLikeCountById(likeCountDTO.getParentId().intValue());
+        }else
+        {
+            if(likeCountDTO.getType()==2)
+            {
+                commentInfoMapper.incCommentLikeCountById(likeCountDTO.getParentId());
+            }
+
+        }
+
+        System.out.println("commentGood"+likeCountDTO.getParentId()+" "+likeCountDTO.getType());
+        return  1;
+    }
+
+
 
 }

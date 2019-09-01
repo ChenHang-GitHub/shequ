@@ -83,7 +83,7 @@
                     <input type="text" class="form-control" th:value="${tag}" id="tag" name="tag"
                            autocomplete="off"
                            placeholder="输入标签，以，号分隔"
-                           onclick="showSelectTag()">
+                           onclick="showSelectTag()" required="true">
                     <div id="select-tag" class="publish-tag-tab">
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" th:each="selectCategory,selectCategoryStat: ${tags}"
@@ -123,10 +123,18 @@
 
         <!--3-->
         <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <h2> * 问题发布指南</h2>
-            • 问题标题: <br>
-            • 问题补充: <br>
-            • 选择标签: <br>
+            </br>
+            </br>
+            <div class="text-center">
+                <h2>问题发布指南</h2>
+            </div>
+
+            <h3>• 问题标题:</h3>
+            标题不能为空且长度不能超过30个字符 <br>
+            <h3>• 问题补充:</h3>
+            可添加具体代码或者上传图片来具体描述出现的问题，为方便回答者更了解出现的问题<br>
+            <h3>• 选择标签:</h3>
+            对问题进行贴上标签，用以描述问题属于哪种问题<br>
         </div>
     </div>
 </div>

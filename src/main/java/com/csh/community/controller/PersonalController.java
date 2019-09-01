@@ -1,6 +1,7 @@
 package com.csh.community.controller;
 
 import com.csh.community.dao.NotificationMapper;
+import com.csh.community.dao.PublishMapper;
 import com.csh.community.dao.UserMapper;
 import com.csh.community.dto.NotificationDTO;
 import com.csh.community.dto.QuestionDTO;
@@ -10,10 +11,12 @@ import com.csh.community.service.QuestionService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +42,8 @@ public class PersonalController {
     NotificationService notificationService;
     @Resource
     UserMapper userMapper;
+    @Resource
+    PublishMapper publishMapper;
 
 //    @GetMapping(value = "/personal")
 //    public String toPersonalPage(Model model) {
@@ -69,7 +74,6 @@ public class PersonalController {
             //pagehelper
             Page<Object> pageHelper = PageHelper.startPage(pageNum, 5);
             questionDTOList= questionService.getSelfList(user.getId());
-            logger.debug("questionDTOList????"+questionDTOList.toString());
             int pages = pageHelper.getPages();
             int pageNum1 = pageHelper.getPageNum();
             logger.debug("pages........."+pages+pageNum1);
@@ -83,7 +87,6 @@ public class PersonalController {
             model.addAttribute("midpage",arr);
             model.addAttribute("pages",pages);
             model.addAttribute("questionDTO",questionDTOList);
-            logger.debug("personal"+questionDTOList.toString());
         }else if(action.equals("replies"))
         {
             model.addAttribute("headingName","我的通知");
@@ -115,6 +118,18 @@ public class PersonalController {
         return "personal";
     }
 
+    @DeleteMapping(value = "/personal")
+    public  String deleteQuestion(@Param("deleteId") Integer deleteId)
+    {
+        if(deleteId!=null) {
+            publishMapper.deleteQuestionById(deleteId);
+        }else
+        {
+            //异常处理
+        }
+
+        return "redirect:/personal/questions";
+    }
 
 
 }

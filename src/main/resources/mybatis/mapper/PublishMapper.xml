@@ -19,7 +19,7 @@
     <!--List<Question> getQuestionById(Integer id);-->
 
     <select id="getQuestionById" resultType="com.csh.community.pojo.Question">
-        SELECT * FROM question where creator = #{id}
+        SELECT * FROM question where creator = #{id} order by gmtcreate desc
     </select>
 
     <!--Question getPersonalQuestion(Integer id);-->
@@ -46,7 +46,7 @@
     <!--List<Question> getRelatedQuestion(Question question);-->
 
     <select id="getRelatedQuestion" resultType="com.csh.community.pojo.Question">
-        SELECT * FROM question  where REGEXP_LIKE(TAG,#{tag},'i')  and id !=#{id}
+        SELECT * FROM question  where REGEXP_LIKE(TAG,#{tag},'i')  and id !=#{id} and rownum&lt;15
     </select>
 
 
@@ -67,6 +67,14 @@
     <select id="getQuestionBySearch" resultType="com.csh.community.pojo.Question">
         SELECT * FROM question  where REGEXP_LIKE(title,#{regexp},'i') order by gmtcreate desc
     </select>
+    <!--List<Question> getHotQuestion();-->
+    <select id="getHotQuestion" resultType="com.csh.community.pojo.Question">
+        select * from (select * from question order by viewcount desc)  where rownum &lt;6
+    </select>
 
+    <!--void deleteQuestionById(Integer deleteId);-->
+    <delete id="deleteQuestionById">
+        delete from question where id =#{deleteId}
+    </delete>
 
 </mapper>

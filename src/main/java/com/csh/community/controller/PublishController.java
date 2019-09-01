@@ -36,7 +36,6 @@ public class PublishController {
     @GetMapping("/publish")
     public String publish(Model model) {
         model.addAttribute("tags", TagCache.get());
-        System.out.println(TagCache.get());
         return "publish";
     }
 
@@ -52,7 +51,6 @@ public class PublishController {
         model.addAttribute("updateid",question.getId());
         model.addAttribute("tags", TagCache.get());
 
-        System.out.println(TagCache.get()+"11111111111111111111111111111111111");
         return "publish";
     }
 
@@ -90,27 +88,16 @@ public class PublishController {
         model.addAttribute("tag", tag);
         model.addAttribute("tags", TagCache.get());
         User user = (User) request.getSession().getAttribute("user");
-//        Cookie[] cookies = request.getCookies();
-//        if (cookies != null) {
-//            for (Cookie cookie : cookies) {
-//                if (cookie.getName().equals("token")) {
-//                    logger.info("查询Cookie携带token");
-//                    String token = cookie.getValue();
-//                    //根据token 查询登陆态
-//                    user = userMapper.findByToken(token);
-//                    logger.info(user.getName() + user.getToken());
-//                    if (user != null) {
-//                        request.getSession().setAttribute("user", user);
-//                    }
-//                    break;
-//                }
-//            }
-//        }
+
         if (user == null) {
             model.addAttribute("error", "用户未登录");
             return "publish";
         }
 
+        if(tag==null||tag.equals(""))
+        {
+            model.addAttribute("error", "标签不能为空" );
+        }
 
         String invalid = TagCache.filterInvalid(tag);
         if (StringUtils.isNotBlank(invalid)) {

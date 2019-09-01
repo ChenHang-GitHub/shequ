@@ -32,4 +32,8 @@ public interface PublishMapper {
     Question getQuesById(Long parentId);
 
     List<Question> getQuestionBySearch(String regexp);
+
+    List<Question> getHotQuestion();
+
+    void deleteQuestionById(Integer deleteId);
 }

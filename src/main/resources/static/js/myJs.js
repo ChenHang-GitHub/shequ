@@ -1,4 +1,47 @@
 /*
+* 点赞问题*/
+function  onThumbsUp() {
+    var questionId  = $("#questionId").val();
+    console.log(questionId);
+    var data = {
+        parentId: questionId,
+        type: 1
+    }
+
+    $.ajax({
+       type:'post',
+       url:'/commentGood',
+        contentType: 'application/json;charset=utf-8',
+        data: JSON.stringify(data),
+        success:function (data) {
+            alert("感谢点赞,请勿重复点赞")
+        }
+    });
+
+}
+
+/*点赞评论*/
+function onCommentThumbsUp(e) {
+    var commentId = e.getAttribute("data-id");
+    alert(commentId);
+    var data = {
+        parentId: commentId,
+        type: 2
+    }
+
+    $.ajax({
+        type:'post',
+        url:'/commentGood/',
+        contentType: 'application/json;charset=utf-8',
+        data: JSON.stringify(data),
+        success:function (data) {
+            alert("感谢点赞,请勿重复点赞")
+        }
+    });
+
+}
+
+/*
 * 回复的ajax
 * */
 function postComment() {
@@ -96,26 +139,6 @@ function collapseComments(e) {
     } else {
         var subCommentContainer = $("#comment-" + id);
 
-        // $.getJSON("/comment/" + id, function (data) {
-        //
-        //
-        //         console.log(data);
-        //         var subCommentContainer = $("#comment-"+ id);
-        //         $.each(data, function (index,comment) {
-        //             console.log(comment.content);
-        //             var c = $("<div/>", {
-        //                 "class": "col-lg-12 col-md-12 col-sm-12 col-xs-12 comments",
-        //                 html: comment.content
-        //             });
-        //             subCommentContainer.prepend(c);
-        //         });
-        //
-        //         //展开二级评论
-        //         comments.addClass("in");
-        //         // 标记二级评论展开状态
-        //         e.setAttribute("data-collapse", "in");
-        //         e.classList.add("active");
-        //     });
         if (subCommentContainer.children().length != 1) {
             //展开二级评论
             comments.addClass("in");
